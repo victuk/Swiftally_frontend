@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"
+    />
+    <script
+      defer
+      src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- <script defer src="alpine3.10.2.min.js"></script> -->
+    <script defer src="frontend/scripts/script.js"></script>
+    <!-- <script defer src="frontend/scripts/script1.js"></script> -->
+    <!-- <script defer src="frontend/scripts/scriptOne.js"></script> -->
+    <!-- <script defer src="frontend/scripts/script.js"></script> -->
+    <!-- <script defer src="frontend/scripts/scriptTwo.js"></script> -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+    ></script>
+
+    <title>Swiftvote</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="image/Swiftvote Logo.png" alt="" />
+      </div>
+    </header>
+    <main>
+      <!-- next -->
+
+      <div class="container-fluid">
+        <div class="right">
+          <div class="text">What best describes your current<b> role?</b>.</div>
+          <div class="form2">
+            <div class="">
+              <label for="">
+                <input type="button" value="instructor" id="myInput" onclick="myFunction(this)" />
+              </label>
+              <label for="">
+                <input
+                  type="button"
+                  value="School admin"
+                  id="myInput4"
+                  onclick="myFunction(this)"
+                />
+              </label>
+
+              <label for="">
+                <input
+                  type="button"
+                  value="Student"
+                  id="myInput1"
+                  onclick="myFunction(this)"
+                />
+              </label>
+
+              <label for="">
+                <input
+                  type="button"
+                  value="Professor"
+                  id="myInput2"
+                  onclick="myFunction(this)"
+                />
+              </label>
+
+              <label for="">
+                <input
+                  type="button"
+                  value="lecturer"
+                  id="myInput3"
+                  onclick="myFunction(this)"
+                />
+              </label>
+
+              <label for="">
+                <input
+                  type="button"
+                  value="Assistant Professor"
+                  id="myInput4"
+                  onclick="myFunction(this)"
+                />
+              </label>
+
+              <label for="">
+                <input
+                  type="button"
+                  value="associate professor"
+                  id="myInput5"
+                  onclick="myFunction(this)"
+                />
+              </label>
+
+              <label for="">
+                <input type="button" value="Research assistant" onclick="myFunction(this)" id="myInput6" />
+              </label>
+
+              <label for="">
+                <input value="Dean" type="button" id="myInput7" onclick="myFunction(this)" value="Dean" />
+              </label>
+
+              <label for="">
+                <input value="HOD" type="button" id="myInput8" onclick="myFunction(this)" value="HOD" />
+              </label>
+
+              <label for="">
+                <input type="" value="custom" id="myInput9" onclick="myFunction(this)" />
+              </label>
+            </div>
+
+            <div class="btn">
+              <div class="btn1">
+                <button id="prev">Back</button>
+              </div>
+              <div class="btn2">
+                <button id="next_reg">continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bgImg">
+        <div class="bgImg1">
+          <img src="images/happy-earth/amico.svg" alt="" />
+        </div>
+        <div class="bgImg2">
+          <img src="images/smiley-face/amico.svg" alt="" />
+        </div>
+      </div>
+    </main>
+    <script>
+      const role = document.getElementById("myInput");
+      const next_reg = document.getElementById("next_reg");
+
+      function myFunction(currentRole) {
+   console.log(currentRole.value);
+   localStorage.setItem('currentRole', currentRole.value);
+        }
+      // role.addEventListener('click', fu)/
+      next_reg.addEventListener("click", function (e) {
+        e.preventDefault();
+        // role.val()
+       
+        // localStorage.setItem('role', role.value);
+        location.replace('electiontype.html')
+        // localStorage.setItem('email', email.value);
+        // localStorage.setItem('phone', phone.value);
+        // localStorage.setItem('email', email.value);
+        // location.replace('/indexthree.html?email=' + email.value + '&name=victor');
+      });
+
+
+      $(document).ready(function () {
+        $('input').click(
+          function () {
+          $(this).css({
+            "background-color": "#003478",
+            color: "#ffffff"
+          });
+        },
+
+        function () {
+          $(this).css({
+            "background-color": "#003478",
+            color: "#fff",
+          });
+        },
+        
+        );
+      });
+//       function myFunction(t) {
+//    console.log(t.value);
+// }
+      // $("#next_reg").on("click", function () {
+      //   var text = $("#myInput").val();
+      //   // alert(text);
+      // });
+
+      // $(document).ready(function () {
+      //   $("#myInput" || "#myInput1").click(function () {
+      //     $("#myInput").css({
+      //       "background-color": "#003478",
+      //       color: "#ffffff",
+      //     });
+      //   });
+      //   $("#next_reg").on("click", function () {
+      //   var text = $("#myInput").val();
+      //   // alert(text);
+      // });
+      // });
+      // document.getElementById("myInput1").addEventListener("click", myFunction);
+      // function myFunction() {
+      //   document.getElementById("myInput1").style.background = "#003478";
+      // }
+      //     const options = {
+      // 	method: 'GET',
+      // 	headers: {
+      // 		'X-RapidAPI-Key': 'fa1c39cd3fmsh981a73354942cfap15fe39jsn54bf1b463894',
+      // 		'X-RapidAPI-Host': 'nigeria-universites.p.rapidapi.com'
+      // 	}
+      // };
+
+      // fetch('https://nigeria-universites.p.rapidapi.com/universities/', options)
+      // 	.then(response => response.json())
+      // 	.then(res => {
+      //     let allschools = data.result.universities;
+      //       let html = '';
+      //       for (var i = 0; i < allschools.length; i++) {
+      //         html += "<option value=" + allschools[i].slug + ">" + allschools[i].name + "</option>"
+      //       }
+      //       document.getElementById("school").innerHTML = html;
+      //   })
+      // 	.catch(err => console.error(err));
+
+      // function verifyPage() {
+      //   return {
+      //     reg: 4,
+      //     verifybt() {
+      //       this.reg;
+      //     }
+      //   }
+      // }
+    </script>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+</html>

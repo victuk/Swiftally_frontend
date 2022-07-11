@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"
+    />
+    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+    <!-- <script defer src="alpine3.10.2.min.js"></script> -->
+    <!-- <script defer src="script.js"></script> -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+    ></script>
+
+    <title>Swiftvote</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="image/Swiftvote Logo.png" alt="" />
+      </div>
+    </header>
+
+    <main>
+      <form action="">
+        <!-- Add email and Phone number -->
+        <div class="container-4">
+          <div class="right">
+            <div class="text">
+              Add your<b> email address</b> and <b>Phone number</b> for
+              verification
+            </div>
+            <div class="team">
+              <input
+                type="text"
+                id="adminEmail"
+                name="adminId"
+                placeholder="Email address"
+              />
+              <li x-show="formData.email.length > 0">
+                <i
+                  class="fa-solid fa-check"
+                  x-show="isEmail(formData.email)"
+                ></i>
+                <i
+                  class="fa-solid fa-close"
+                  x-show="!isEmail(formData.email)"
+                ></i>
+                <span
+                  :class="{'color red': isEmail(formData.email), 
+                  'text-red-700': !isEmail(formData.email)}"
+                  :style="{ color: 'red', display: 'flex' }"
+                  class="font-medium text-sm ml-3"
+                  x-text="isEmail(formData.email) ? 
+                'Email is valid' : 'Email is not valid!' "
+                ></span>
+              </li>
+
+              <div class="number">
+                <select name="sel" id="select" x-model="formData.noprifix">
+                  <option value="+234">+234</option>
+                </select>
+                <input
+                  type="tel"
+                  name="tel"
+                  id="tel"
+                  placeholder="Phone number"
+                />
+              </div>
+              A code will be sent to confirm your email
+
+              <!-- <div class="btn2">
+                <button type="button" @click="next_reg()">continue</button>
+              </div> -->
+              <!-- <button
+                type="button"
+                @click="next_reg()"
+                :disabled="submit"
+                disabled
+              >
+                Next
+              </button> -->
+              <div class="btn2">
+                <button
+                  type="submit"
+                  x-text="buttonLabel"
+                  :disabled="loading"
+                  value="submit"
+                  @click="submitData()"
+                  id="register"
+                >
+                  continue
+                </button>
+              </div>
+
+              <!-- <div class="btn1">
+                <button type="button" @click="next_reg()">Back</button>
+              </div> -->
+            </div>
+          </div>
+          <div class="left">
+            <img src="images/emails/amico.png" alt="" />
+            <p><b>Personalize your experience</b></p>
+          </div>
+        </div>
+      </form>
+    </main>
+    <script>
+      const email = document.getElementById('adminEmail');
+      const phone = document.getElementById('tel');
+      const register = document.getElementById('register');
+
+
+      register.addEventListener('click', async function (e) {
+
+           e.preventDefault();
+
+           let response = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin', {
+             method: 'POST',
+            body: JSON.stringify({
+                fullName:
+                localStorage.getItem("fullName"),
+                schoolName:
+                localStorage.getItem("schoolName"),
+                schoolLogo:
+                localStorage.getItem("schoolLogo"),
+                schoolLogoPublicId:
+                localStorage.getItem("schoolLogoPublicId"),
+                electionType:
+                localStorage.getItem("electionType"),
+                currentRole:
+                localStorage.getItem("currentRole"),
+                email: email.value,
+                phone: phone.value
+             })
+          });
+
+           let data = await response.json();
+           console.log(data)
+           localStorage.setItem('regToken', data.regToken)
+           
+           return data;
+          //  location.replace('verify.html');
+
+
+          //  console.log('fullName', localStorage.getItem('fullName'),
+          //    'email', localStorage.getItem('email'),
+          //    'phoneNumber', phoneNumber.value);
+         })
+               // function emailVal() {
+               //   return {
+               //     isEmail(email) {
+               //             var re = /\S+@\S+\.\S+/;
+               //             return re.test(email);
+               //     },
+               //   }
+               // }
+
+               // function submitForm() {
+               //   return {
+               //     xtrue: true,
+               //     formData: {
+               //       email: "",
+               //       phone: "",
+               //     },
+               //     open: "false",
+               //     status: false,
+               //     loading: false,
+               //     isError: false,
+               //     buttonLabel: "Submit",
+               //     isEmail(email) {
+               //       var re = /\S+@\S+\.\S+/;
+               //       return re.test(email);
+               //     },
+
+               //     submitData() {
+               //       if (!this.formData.email.length) {
+               //         alert("Please put in the right email!");
+               //         return;
+               //       }
+
+               //       this.buttonLabel = "Submitting...";
+               //       this.loading = true;
+               //       fetch(
+               //         "https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin",
+               //         {
+               //           method: "POST",
+               //           headers: {
+               //             "Content-Type": "application/json",
+               //           },
+               //           body: JSON.stringify(
+               //             this.formData,
+               //             "fullName",
+               //             localStorage.getItem("fullName"),
+               //             "electionType",
+               //             localStorage.getItem("electionType"),
+               //             "schoolLogo",
+               //             localStorage.getItem("schoolLogo"),
+               //             "schoolPublicid",
+               //             localStorage.getItem("schoolPublicid"),
+               //             "currentRole",
+               //             localStorage.getItem("currentRole"),
+               //             "schoolName",
+               //             localStorage.getItem("schoolName")
+               //           ),
+               //         }
+               //       ).then((response) => {
+               //         if (response.ok) {
+               //           window.location.replace("verify.html");
+               //           this.status = true;
+               //         } else {
+               //           throw new Error("Your registration failed");
+               //         }
+               //       })
+
+
+
+               //       // localStorage.setItem("schoolLogo", response.regToken)
+
+               //         .then((json) => console.log(json))
+               //         .catch((error) => console.log(error))
+
+               //         .finally(() => {
+               //           this.loading = false;
+               //           this.buttonLabel = "Submit";
+               //         });
+               //     },
+               //   };
+               // }
+
+                 //     reg: 1,
+                 //     n_reg: 7,
+
+                 //     next_reg() {
+                 //       this.reg++;
+                 //       if (this.reg > this.n_reg) {
+                 //         this.chart = 1;
+                 //       }
+                 //     },
+
+                 //     prev_reg() {
+                 //       this.reg--;
+                 //       if (this.reg < 1) {
+                 //         this.reg = this.n_reg;
+                 //       }
+                 //     },
+                 //     rege: 5,
+                 //     verify() {
+                 //       this.reg;
+                 //     },
+                 //   };
+                 // }
+    </script>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+</html>

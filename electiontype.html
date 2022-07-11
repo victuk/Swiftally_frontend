@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+  <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- <script defer src="alpine3.10.2.min.js"></script> -->
+  <script defer src="frontend/scripts/script.js"></script>
+  <script defer src="frontend/scripts/script1.js"></script>
+  <script defer src="frontend/scripts/scriptOne.js"></script>
+  <script defer src="frontend/scripts/script.js"></script>
+  <!-- <script defer src="frontend/scripts/scriptTwo.js"></script> -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+
+  <title>Swiftvote</title>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="image/Swiftvote Logo.png" alt="" />
+  </header>
+  </div>
+  <div class="" x-data="submitForm()">
+  <main x-cloak>
+      <!-- next2 -->
+      <div class="container-fluid">
+        <div class="right">
+          <div class="text">
+            Hey, tell us which <b>type of election</b> you would like to host.
+          </div>
+          <div class="form2">
+            <form action="">
+              <div class="">
+                <input type="button" value="general" onclick="myFunction(this)">
+                <input type="button" value="faculty" onclick="myFunction(this)">
+                <input type="button" value="department" onclick="myFunction(this)">
+                <input type="button" value="hostel" onclick="myFunction(this)">
+                <input type="button" value="staff" onclick="myFunction(this)">
+                <input type="button" value="class" onclick="myFunction(this)">
+                <input type="button" value="association" onclick="myFunction(this)">
+                <input type="button" value="award-choice" onclick="myFunction(this)">
+                <input type="button" value="social-contest" onclick="myFunction(this)">
+                <input type="button" value="post-graduate" onclick="myFunction(this)">
+                <input type="" value="Custom" onclick="myFunction(this)">
+              </div>
+            </form>
+            <div class="btn">
+              <div class="btn1">
+                <button type="button" @click="prev_reg()">Back</button>
+              </div>
+              <div class="btn2">
+                <button id="next" >continue</button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div class="bgImg">
+        <div class="bgImg1">
+          <img src="images/happy-earth/amico.svg" alt="">
+        </div>
+        <div class="bgImg2">
+          <img src="images/smiley-face/amico.svg" alt="">
+        </div>
+      </div>
+  </main>
+  </div>
+  <script>
+     const role = document.getElementById("myInput");
+      const next_reg = document.getElementById("next_reg");
+
+      function myFunction(electionType) {
+   console.log(electionType.value);
+   localStorage.setItem('electionType', electionType.value);
+        }
+      // role.addEventListener('click', fu)/
+      next.addEventListener("click", function (e) {
+        e.preventDefault();
+        // role.val()
+       
+        // localStorage.setItem('role', role.value);
+        location.replace('email.html')
+      // location.replace('/indexthree.html?email=' + email.value + '&name=victor');
+    });
+
+    $(document).ready(function () {
+        $('input').click(
+          function () {
+          $(this).css({
+            "background-color": "#003478",
+            color: "#ffffff"
+          });
+        },
+
+        function () {
+          $(this).css({
+            "background-color": "#003478",
+            color: "#fff",
+          });
+        },
+        
+        );
+      });
+//     const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': 'fa1c39cd3fmsh981a73354942cfap15fe39jsn54bf1b463894',
+// 		'X-RapidAPI-Host': 'nigeria-universites.p.rapidapi.com'
+// 	}
+// };
+
+// fetch('https://nigeria-universites.p.rapidapi.com/universities/', options)
+// 	.then(response => response.json())
+// 	.then(res => {
+//     let allschools = data.result.universities;
+//       let html = '';
+//       for (var i = 0; i < allschools.length; i++) {
+//         html += "<option value=" + allschools[i].slug + ">" + allschools[i].name + "</option>"
+//       }
+//       document.getElementById("school").innerHTML = html;
+//   })
+// 	.catch(err => console.error(err));
+
+    // function verifyPage() {
+    //   return {
+    //     reg: 4,
+    //     verifybt() {
+    //       this.reg;
+    //     }
+    //   }
+    // }
+
+  </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+
+
+</html>
