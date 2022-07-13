@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
   <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
   <script defer src="alpine3.10.2.min.js"></script>
-  <script defer src="scripts/script.js"></script>
-  <script defer src="scripts/script1.js"></script>
+  <!-- <script defer src="scripts/script.js"></script> -->
+  <!-- <script defer src="scripts/script1.js"></script> -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
 
   <title>Swiftvote</title>
@@ -30,7 +30,7 @@
   <div class="" x-data="submitForm()">
     <main x-cloak>
       <!-- first signup -->
-      <form action="#" name="upload-form" method="POST" @submit.prevent="submitData" type="multipart" id="form">
+      <form id="form">
         <!-- <pre x-text="JSON.stringify(formData)"></pre> -->
       <!-- Who is in your team -->
       <div class="container" id="team">
@@ -41,7 +41,7 @@
           <div class="team">
 
             <template x-for="(field, index) in fields" :key="index">
-              <input x-model="field.txt1" type="email" name="txt1[]" class="form-control" placeholder="Enter email">
+              <input x-model="field.txt1" type="email" name="txt1" class="form-control emails" placeholder="Enter email">
            </template>
            <li x-show="fields.txt1.length > 0">
             <i class="fa-solid fa-check" x-show="isEmail(fields.txt1)"></i>
@@ -59,8 +59,8 @@
               <button type="button" @click="next_reg()">I'll do it later</button>
             </div>
             <div class="btn2">
-              <button type="submit" :disabled="loading" value="submit"
-                @click="submitData()" placeholder="continue">Continue</button>
+              <button type="submit"
+                id="submitButton" placeholder="continue">Continue</button>
             </div>
           </div>
         </div>
@@ -145,40 +145,6 @@
           return re.test(txt1);
         },
 
-        submitData() {
-          if (!this.fields.txt1.length) {
-            alert("Please put in the right email!")
-            return;
-          }
-
-          this.buttonLabel = 'Submitting...'
-          this.loading = true;
-          fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.formData)
-          })
-
-
-            .then((response) => {
-              if (response.ok) {
-                window.location.hash="verify.html";
-                this.status = true;
-              } else {
-                throw new Error("Your registration failed");
-              }
-            })
-            .then((json) => console.log(json))
-            .catch(error => console.log(error))
-
-            .finally(() => {
-              this.loading = false;
-              this.buttonLabel = 'Submit'
-            })
-        },
-
             reg: 1,
             n_reg: 7,
 
@@ -205,6 +171,87 @@
             }
       }
     }
+
+   
+
+
+    function submitData(e) {
+          // if (!this.fields.txt1.length) {
+          //   alert("Please put in the right email!")
+          //   return;
+          // }
+
+          e.preventDefault();
+
+          // this.buttonLabel = 'Submitting...'
+          // this.loading = true;
+
+          console.log([...document.getElementsByClassName('emails')]);
+
+          // fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin', {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json'
+          //   },
+          //   body: JSON.stringify(this.formData)
+          // })
+
+
+          //   .then((response) => {
+          //     if (response.ok) {
+          //       window.location.hash="verify.html";
+          //       this.status = true;
+          //     } else {
+          //       throw new Error("Your registration failed");
+          //     }
+          //   })
+          //   .then((json) => console.log(json))
+          //   .catch(error => console.log(error))
+
+          //   .finally(() => {
+          //     this.loading = false;
+          //     this.buttonLabel = 'Submit'
+          //   })
+        }
+
+        document.getElementById('submitButton').addEventListener('click', function(e) {
+          e.preventDefault();
+          let email = document.getElementsByClassName('emails');
+          let emailsArray = [];
+
+          for (let i = 0; i < email.length; i++) {
+            emailsArray.push(email[i].value);
+          }
+
+          
+
+           fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              accesstoken: localStorage.getItem('accesstoken')
+            },
+            body: JSON.stringify({
+              teammateEmailList: emailsArray
+            })
+          })
+
+            .then((response) => {
+              if (response.status == 200) {
+                window.location.assign('./dashboard/index.html');
+                // this.status = true;
+              } else {
+                throw new Error("Your registration failed");
+              }
+            })
+            .then((json) => console.log(json))
+            .catch(error => console.log(error))
+            .finally(() => {
+              this.loading = false;
+              this.buttonLabel = 'Submit'
+            });
+        });
+
 //     const options = {
 // 	method: 'GET',
 // 	headers: {
