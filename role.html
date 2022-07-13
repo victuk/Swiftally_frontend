@@ -156,8 +156,13 @@
       const next_reg = document.getElementById("next_reg");
 
       function myFunction(currentRole) {
-   console.log(currentRole.value);
-   localStorage.setItem('currentRole', currentRole.value);
+
+        let schoolDetails = JSON.parse(localStorage.getItem("schoolDetails"));
+        
+        schoolDetails.currentRole = currentRole.value;
+
+        localStorage.setItem("schoolDetails", JSON.stringify(schoolDetails));
+
         }
       // role.addEventListener('click', fu)/
       next_reg.addEventListener("click", function (e) {

@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <!-- <link rel="stylesheet" href="style.css"/> -->
-  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="../dashboard.css" />
   <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
   <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
-  <script defer src="alpine3.10.2.min.js"></script>
+  <script defer src="../alpine3.10.2.min.js"></script>
 
   <title>Swiftvote</title>
 </head>
@@ -52,7 +52,7 @@
       </div>
       <div class="side">
         <div class="logo">
-          <img src="image/Swiftvote Logo.png" alt="" />
+          <img src="../image/Swiftvote Logo.png" alt="" />
         </div>
         <div class="election">
           <div class="image"></div>
@@ -65,19 +65,19 @@
         <div class="sidebar-items">
           <ul>
             <li>
-              <a href="dashboard.html">
+              <a href="./index.html">
                 <i class="fas fa-th-large"></i>
                 <h3>Dashboard</h3>
               </a>
             </li>
             <li>
-              <a href="noelection.html">
+              <a href="./noelection.html">
                 <i class="fa-solid fa-user"></i>
                 <h3>Candidate</h3>
               </a>
             </li>
             <li>
-              <a href="noelection.html">
+              <a href="./noelection.html">
                 <i class="fa-solid fa-users"></i>
                 <h3>Voter</h3>
               </a>
@@ -127,7 +127,7 @@
             <i class="fa-brands fa-instagram"></i>
           </div>
           <div class="img">
-            <img src="images/Beta version.png" alt="" />
+            <img src="../images/Beta version.png" alt="" />
           </div>
         </div>
       </div>
@@ -202,7 +202,7 @@
               <hr />
               <div class="content" id="content">
                 <div class="img">
-                  <img src="images/telescope/amico.png" alt="" />
+                  <img src="../images/telescope/amico.png" alt="" />
                 </div>
                 <br />
                 <hr />
@@ -425,7 +425,7 @@
         </div>
       </div>
       <div class="center">
-        <img src="images/bird-on-a-wire/rafiki.png" alt="" />
+        <img src="../images/bird-on-a-wire/rafiki.png" alt="" />
         <div class="filter">
           <input type="button" value="Create an election" />
         </div>
@@ -434,6 +434,11 @@
   </main>
 
   <script>
+
+    if(!localStorage.getItem('accesstoken')) {
+      location.assign('../login.html');
+    }
+
     // document.addEventListener("alpine:init", () => {
     //   Alpine.store("mobileNav", {
     //     open: false,

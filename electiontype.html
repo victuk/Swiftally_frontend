@@ -84,8 +84,9 @@
       const next_reg = document.getElementById("next_reg");
 
       function myFunction(electionType) {
-   console.log(electionType.value);
-   localStorage.setItem('electionType', electionType.value);
+        let schoolDetails = JSON.parse(localStorage.getItem("schoolDetails"));
+        schoolDetails.electionType = electionType.value;
+        localStorage.setItem("schoolDetails", JSON.stringify(schoolDetails));
         }
       // role.addEventListener('click', fu)/
       next.addEventListener("click", function (e) {
