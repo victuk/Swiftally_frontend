@@ -129,37 +129,35 @@
       const phone = document.getElementById('tel');
       const register = document.getElementById('register');
 
+      
+
 
       register.addEventListener('click', async function (e) {
 
            e.preventDefault();
 
+            let schoolDetails = JSON.parse(localStorage.getItem('schoolDetails'));
+            schoolDetails.email = email.value;
+            schoolDetails.phone = phone.value;
+
+            console.log(JSON.stringify(schoolDetails));
+
            let response = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin', {
              method: 'POST',
-            body: JSON.stringify({
-                fullName:
-                localStorage.getItem("fullName"),
-                schoolName:
-                localStorage.getItem("schoolName"),
-                schoolLogo:
-                localStorage.getItem("schoolLogo"),
-                schoolLogoPublicId:
-                localStorage.getItem("schoolLogoPublicId"),
-                electionType:
-                localStorage.getItem("electionType"),
-                currentRole:
-                localStorage.getItem("currentRole"),
-                email: email.value,
-                phone: phone.value
-             })
+             headers: {
+               'Content-Type': 'application/json'
+             },
+            body: JSON.stringify(schoolDetails)
           });
 
            let data = await response.json();
-           console.log(data)
-           localStorage.setItem('regToken', data.regToken)
+
+           if(response.status == 200) {
+            localStorage.setItem('regToken', data.regToken);
+           }
            
-           return data;
-          //  location.replace('verify.html');
+           
+           location.assign('verify.html');
 
 
           //  console.log('fullName', localStorage.getItem('fullName'),

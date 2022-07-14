@@ -1,0 +1,1 @@
+const baseUrl = 'https://swiftvote-test-api.herokuapp.com/v1/';

@@ -15,11 +15,11 @@
   <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <!-- <script defer src="alpine3.10.2.min.js"></script> -->
-  <script defer src="frontend/scripts/script.js"></script>
-  <script defer src="frontend/scripts/script1.js"></script>
-  <script defer src="frontend/scripts/scriptOne.js"></script>
   <!-- <script defer src="frontend/scripts/script.js"></script> -->
-  <script defer src="frontend/scripts/scriptTwo.js"></script>
+  <!-- <script defer src="frontend/scripts/script1.js"></script> -->
+  <!-- <script defer src="frontend/scripts/scriptOne.js"></script> -->
+  <!-- <script defer src="frontend/scripts/script.js"></script> -->
+  <!-- <script defer src="frontend/scripts/scriptTwo.js"></script> -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
 
   <title>Swiftvote</title>
@@ -79,24 +79,28 @@
       </div>
     </div>
   </main>
+  <script src="./js/utilities/uploadToCloudinary.js"></script>
   <script>
     const fullName = document.getElementById('fname');
     const schoolName = document.getElementById('school');
     const schoolLogo = document.getElementById('sch_logo');
     const next = document.getElementById('next');
 
-    next.addEventListener('click', function (e) {
+    next.addEventListener('click', async function (e) {
       e.preventDefault();
 
+      const response = await uploadImage(schoolLogo.files[0]);
 
-      localStorage.setItem('fullName', fullName.value)
-      localStorage.setItem('schoolName', schoolName.value)
-      
-      // localStorage.setItem('email', email.value);
-      // localStorage.setItem('phone', phone.value);
-      // localStorage.setItem('email', email.value);
-      // location.replace('/indexthree.html?email=' + email.value + '&name=victor');
-    // location.replace('role.html');
+    let schoolDetails = {
+      fullName: fullName.value,
+      schoolName: schoolName.value,
+      schoolLogo: response.secure_url,
+      schoolLogoPublicId: response.public_id
+    }
+
+    localStorage.setItem('schoolDetails', JSON.stringify(schoolDetails));
+
+    location.assign('role.html');
 
     });
 
