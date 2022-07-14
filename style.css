@@ -83,6 +83,19 @@ body {
 .seperator h1 {
   font-size: 2rem;
 }
+.btn1 a {
+  content: 'submit';
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 6px 16px;
+  /* margin: ; */
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  /* margin-top: 3rem; */
+  text-decoration: none;
+}
 
 header {
   position: sticky;
@@ -111,7 +124,7 @@ a:hover {
   color: var(--color-primary);
 }
 a:visited {
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 main {
   background-color: var(--color-background);
@@ -315,19 +328,42 @@ form p {
   margin-top: 1rem;
 }
 input[type="submit"] {
+  float: right;
+  display: flex;
   width: 100%;
   background-color: var(--color-primary);
   color: white;
-  padding: 6px 16px;
+  padding: 6px 40px;
   margin: 8px 0;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  margin-top: 3rem;
+  margin-top: 4rem;
+  justify-content: center;
+
+}
+button:disabled {
+  background-color: #003478;
+  opacity: 0.2;
+  content: 'submitting';
+  visibility: visible;
+  cursor: not-allowed;
+}
+button:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 input[type="submit"]:hover {
   background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+input[type="submit"]:disabled{
+  background-color: #003478;
+  opacity: 0.2;
+  content: 'submitting';
+  visibility: visible;
+  cursor: not-allowed;
 }
 .checkbox {
   padding-top: 1rem;
@@ -352,6 +388,7 @@ input[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   width: max-content;
+  height: max-content;
 }
 span {
   color: var(--color-primary);

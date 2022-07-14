@@ -1,6 +1,6 @@
 let darkMode = localStorage.getItem('darkMode');
 
-const sideMenu = document.querySelector(".container.xyz");
+const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
@@ -14,7 +14,7 @@ const sideText = document.querySelector(".sidebar-text");
 // show sidebar
 
 menuBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'block';
+    sideMenu.style.display = 'grid';
 })
 
 // close sidebar

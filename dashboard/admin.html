@@ -18,14 +18,14 @@
   <script defer src="../alpine3.10.2.min.js"></script>
   <script defer src="../js/index.js"></script>
 
+
   <title>Swiftvote</title>
 </head>
 
-<body x-data x-cloak>
+<body x-data>
   <main>
     <aside>
       <div class="side-menu">
-        
         <div class="explore" x-data="dropdown" @click="toggle()">
           <div class=""><i class="fas fa-th"></i></div>
 
@@ -58,7 +58,7 @@
           <img src="../images/Swiftvote Logo.png" alt="" />
           <div class="close" id="close-btn">
             <i class="fas fa-window-close"></i>
-        </div>
+          </div>
         </div>
         <div class="election">
           <div class="image"></div>
@@ -71,19 +71,19 @@
         <div class="sidebar-items">
           <ul>
             <li>
-              <a href="./index.html">
+              <a href="index.html">
                 <i class="fas fa-th-large"></i>
                 <h3>Dashboard</h3>
               </a>
             </li>
             <li>
-              <a href="./noelection.html">
+              <a href="noelection.html">
                 <i class="fa-solid fa-user"></i>
                 <h3>Candidate</h3>
               </a>
             </li>
             <li>
-              <a href="./noelection.html">
+              <a href="noelection.html">
                 <i class="fa-solid fa-users"></i>
                 <h3>Voter</h3>
               </a>
@@ -138,13 +138,11 @@
         </div>
       </div>
     </aside>
-    
     <div class="container">
-
       <nav>
-      <div class="menu" id="menu-btn">
-        <i class="fas fa-bars"></i>
-    </div> 
+        <div class="menu" id="menu-btn">
+          <i class="fas fa-bars"></i>
+      </div> 
         <div class="create-election">
           <input type="button" value="Create election +" />
           <input type="button" value="Share election" />
@@ -213,7 +211,7 @@
               <hr />
               <div class="content" id="content">
                 <div class="img">
-                  <img src="../images/telescope/amico.png" alt="" />
+                  <img src="images/telescope/amico.png" alt="" />
                 </div>
                 <br />
                 <hr />
@@ -436,20 +434,43 @@
         </div>
       </div>
       <div class="center">
-        <img src="../images/bird-on-a-wire/rafiki.png" alt="" />
+        <img src="images/bird-on-a-wire/rafiki.png" alt="" />
         <div class="filter">
           <input type="button" value="Create an election" />
+        </div>
+
+        <div class="adminModal" x-cloak @click.away="isOpen = false" x-transition:enter.10ms
+          x-transition:leave.delay.20ms>
+          <div class="modal-header">
+            <div class="middle">
+              <b>Add Electoral Admins</b>
+              <p>Give co-admins access to this platform and start collaborating in realtime</p>
+            </div>
+            <hr><br>
+            <div class="email">
+              <label for="email">Email</label><br>
+              <input type="email" name="" id="">
+              <button>Send invite</button>
+            </div>
+            <div class="members">
+
+            </div>
+
+            <div class="sharelink">
+              <label for="email">Share link</label><br>
+              <div class="">
+                <input type="text" name="" id="">
+                <button>copy link</button>
+              </div>
+            </div>
+          </div>
+          <hr />
         </div>
       </div>
     </div>
   </main>
 
   <script>
-
-    if(!localStorage.getItem('accesstoken')) {
-      location.assign('../login.html');
-    }
-
     // document.addEventListener("alpine:init", () => {
     //   Alpine.store("mobileNav", {
     //     open: false,

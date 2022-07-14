@@ -84,6 +84,12 @@ h3 {
 [x-cloak] {
   display: none;
 }
+.close {
+  display: none;
+}
+.menu {
+  display: none;
+}
 main {
   position: relative;
   display: grid;
@@ -211,10 +217,14 @@ hr {
 .container nav {
   position: sticky;
   display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 1rem;
   align-items: center;
   justify-content: space-around;
-  min-height: 10%;
+  min-height: max-content;
   background: var(--color-sidebar);
+  padding: 1rem 0.5rem;
 }
 .create-election {
   display: flex;

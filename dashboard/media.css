@@ -1,0 +1,147 @@
+/* ==================== Dark theme variabless ================= */
+
+.dark-theme-variables {
+    /* --color-background: #181a1e; */
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 8.8);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --color-info-light: #121212;
+    --color-span: #edeffd;
+  }
+  
+  /* ==================== MEDIA QUERIES ================= */
+  @media screen and (max-width: 1200px) {
+    .container.xyz.text-md-hidden {
+      width: 94%;
+      grid-template-columns: 7rem auto;
+    }
+  
+    .container.xyz.text-md-hidden aside .logo h2 {
+      display: none;
+    }
+    .container.xyz.text-md-hidden aside .sidebar h3 {
+      display: none;
+    }
+    .container.xyz.text-md-hidden aside .sidebar a {
+      width: 5.6rem;
+    }
+  
+    .container.xyz.text-md-hidden aside .sidebar a:last-child {
+      display: none;
+    }
+    aside .sidebar a:nth-child(12) {
+      position: flex;
+      margin-left: none;
+      width: 40%;
+      justify-content: left;
+      align-items: left;
+      padding-left: 10px;
+    }
+  
+    aside .sidebar .side {
+      display: block;
+      bottom: 65rem;
+      position: flex;
+      margin-left: none;
+      width: 40%;
+      justify-content: left;
+      align-items: left;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+    .container.xyz.text-md-hidden .wrapper .nav .president{
+      display: none;
+      
+    }
+    .wrapper .container-box {
+      width: 94%;
+      grid-template-columns: auto 24rem;
+    }
+    .wrapper .top .search {
+      margin-left: 175px;
+      width: 55%;
+    }
+    .wrapper .top .search .btn {
+      /* margin-left; */
+    }
+    main .insights {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 100%;
+    }
+    main {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .menu {
+        display: block;
+        cursor: pointer;
+    }
+    .close {
+        display: block;
+      }
+    aside {
+      position: fixed;
+      background: var(--color-white);
+      z-index: 3;
+      box-shadow: 1rem 3rem 4rem var(--color-light);
+      height: 100vh;
+      display: none;
+      animation: showMenu 400ms ease forwards;
+    }
+    .adminModal {
+        z-index: 2
+        ;
+    }
+    @keyframes showMenu {
+      to {
+        left: 0;
+      }
+    }
+    aside .logo {
+      margin-left: 1rem;
+    }
+  
+    aside .logo h2 {
+      display: inline;
+    }
+  
+    aside .sidebar h3 {
+      display: inline;
+    }
+  
+    aside .sidebar a {
+      width: 100%;
+      height: 3.4rem;
+    }
+    aside .sidebar a:nth-child(12) {
+      position: absolute;
+      bottom: 5rem;
+      padding-left: 1rem;
+    }
+    aside .sidebar .side {
+      display: none;
+    }
+    aside .close {
+      display: inline-block;
+      cursor: pointer;
+    }
+    .wrapper .nav {
+      display: none;
+    }
+    .wrapper {
+      /* width: 100%;
+          top: -14rem; */
+      display: inline-block;
+    }
+  
+    
+  }
+  

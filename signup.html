@@ -47,11 +47,11 @@
               required>
             <label for="sch_name" id="sch_name"> Name of School </label>
             <div class="sel">
-              <label for="sch_logo"> + Add Logo
+              <label for="sch_logo" id="logoo"> + Add Logo
                 <input type="file" name="schoollogo" id="sch_logo" class="input-logo" required>
               </label>
 
-              <input type="text" id="school" placeholder="Type in the name of your school...">
+              <input type="text" id="school" placeholder="Name of school...">
             </div><br>
 
             <div class="checkbox">
@@ -60,7 +60,7 @@
                     policy</b></span></label>
             </div>
 
-            <button id="next">Next</button>
+            <button id="next" onclick="this.disabled = true;">Next</button>
             <p>Already have an account?<span class="cpointer"><b><a href="login.html"> Login</a></b></span></p>
           </div>
         </div>
