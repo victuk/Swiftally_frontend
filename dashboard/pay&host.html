@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="pay&host.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+
+    <title>Swiftvote</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="image/Swiftvote Logo.png" alt="" />
+        </div>
+        <div class="search">
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="search" name="Search" id="search" placeholder="Search" />
+        </div>
+
+        <div class="extra-info">
+            <div class="box-1" x-data="dropdown()">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+
+            <div class="" x-data="dropdown()">
+                <div class="box-2" @click="toggle()">
+                    <i class="fa-solid fa-info"></i>
+                </div>
+                <!-- info dropdown -->
+                <div class="dropdown-3" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                    x-transition:leave.delay.20ms>
+                    <div class="account">
+                        <div class="empty"></div>
+                        <div class="middle">Information page</div>
+                        <div class="close" @click="toggle()">
+                            <i class="fa-light fa-xmark"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="conten" id="info">
+                        <div class="info">
+                            <p>
+                                <b>
+                                    Note that once the election starts, you will not be able
+                                    to register voters and candidates again</b>
+                            </p>
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="profil">
+                            <i class="fa-light fa-arrow-left"></i>
+                            <i class="fa-light fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- info dropdown ends-->
+            </div>
+
+            <div class="" x-data="dropdown()">
+                <div class="box-3" @click="toggle()" @keydown.escape="isOpen = false">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+
+                <!-- Notification dropdown -->
+                <div class="dropdown-2" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                    x-transition:leave.delay.20ms>
+                    <div class="account">
+                        <div class="empty"></div>
+                        <div class="middle">Notifications</div>
+                        <div class="close" @click="toggle()">
+                            <i class="fa-light fa-xmark"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="content" id="content">
+                        <div class="img">
+                            <img src="images/telescope/amico.png" alt="" />
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="profile">
+                            <div class="text">
+                                <p><b>You've got no notification</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- notification dropdown ends -->
+            </div>
+
+            <div class="" x-data="dropdown()">
+                <div class="box" @click="toggle()" @keydown.escape="isOpen = false">
+                    <span>UJ</span>
+                </div>
+
+                <!-- modal for profile -->
+
+                <div class="dropdown-1" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                    x-transition:leave.delay.20ms>
+                    <div class="account">
+                        <div class="empty"></div>
+                        <div class="middle">Account</div>
+                        <div class="close" @click="toggle()">
+                            <i class="fa-light fa-xmark"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="content">
+                        <div class="profile">
+                            <div class="box">
+                                <span>UJ</span>
+                            </div>
+
+                            <div class="text">
+                                <p>Uncle Jerry</p>
+                                <small>Unclejerry@gmail.com</small>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <input type="button" value="Admin ID: @unclejerry.2345" id="id-input" />
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="details">
+                            <ul>
+                                <li>
+                                    <a href="">Account Preference</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">Payment method</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">Settings</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">Help</a>
+                                </li>
+                            </ul>
+                            <hr />
+                            <ul>
+                                <li>
+                                    <a href=""><i class="fa-light fa-arrow-right-from-bracket"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal for profile ends -->
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container" x-data="submitForm()">
+            <div class="pagination">
+                <div class="page">
+                    <div class="badge">1</div>
+                    <h4>Election details</h4>
+                </div>
+                <div class="line"></div>
+                <div class="page">
+                    <div class="badge">2</div>
+                    <h4>Register candidates</h4>
+                </div>
+                <div class="line"></div>
+
+                <div class="page">
+                    <div class="badge">3</div>
+                    <h4>Register voters</h4>
+                </div>
+                <div class="line"></div>
+
+                <div class="page">
+                    <div class="badge">4</div>
+                    <h4>Data display</h4>
+                </div>
+                <div class="line"></div>
+
+                <div class="page">
+                    <div class="badge">5</div>
+                    <h4>Pay & Host</h4>
+                </div>
+            </div>
+            <div class="center">
+                <div class="text">
+                    Yaa!! You are one click to hosting this election.<b>Click on the order button to pay.</b>
+                </div>
+                <div class="visual">
+                    <div class="paydetails">
+                        <h3>Current Order</h3>
+                        <div class="card">
+                            <div class="details">
+                                <i class="fas fa-users"></i>
+                                <p><b>Candidates ( <span>7</span> )</b></p>
+                            </div>
+                            <div class="amont">#28</div>
+                        </div>
+                        <div class="card">
+                            <div class="details">
+                                <i class="fas fa-user"></i>
+                                <p><b>Voters ( <span>300</span> )</b></p>
+                            </div>
+                            <div class="amont">#1200</div>
+                        </div>
+                        <div class="card">
+                            <div class="details">
+                                <i class="fas fa-clock"></i>
+                                <p><b>Duration ( <span>24hrs</span> )</b></p>
+                            </div>
+                            <div class="amont">#2880</div>
+                        </div>
+                        <div class="card">
+                            <div class="details">
+                                <i class="fas fa-display"></i>
+                                <p><b>Data display ( <span>3 selected</span> )</b></p>
+                            </div>
+                            <div class="amont">#1,200</div>
+                        </div>
+                        <h3 class="total">TOTAL: #5228.00</h3>
+                    </div>
+                    <div class="payform">
+                        <div class="name">
+                            <label for="firstname">Firstname
+                                <input type="text"></label>
+                            <label for="lastname">Lastname
+                                <input type="text"></label>
+                        </div>
+                        <div class="card-number">
+                            <label for="">Card number</label>
+                            <input type="text">
+                        </div>
+                        <div class="date">
+                             <label for="expire">Expire date
+                                <input type="text"></label>
+                            <label for="cvv"> CVV
+                                <input type="text"></label>
+                        </div>
+                        <div class="btn" value="Continue" id="order">
+                            ORDER NOW
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+    </main>
+    <script>
+        function submitForm() {
+            return {
+                xtrue: true,
+                formData: {
+                    adminID: "",
+                    password: ""
+                },
+                open: "false",
+                status: false,
+                loading: false,
+                isError: false,
+                buttonLabel: "Submit",
+                isEmail(email) {
+                    var re = /\S+@\S+\.\S+/;
+                    return re.test(email);
+                },
+
+                submitData() {
+                    // if (!this.formData.email.length) {
+                    //   alert("Please put in the right email!");
+                    //   return;
+                    // }
+
+                    this.buttonLabel = "Submitting...";
+                    this.loading = true;
+                    fetch(
+                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(this.formData),
+                        }
+                    )
+                        .then((response) => {
+                            if (response == status) {
+                                // location.replace('dashboard.html');
+                                console.log(response)
+                                this.status = true;
+                            } else {
+                                throw new Error("Your login failed");
+                            }
+                        })
+                        .then((json) => console.log(json))
+                        .catch((error) => console.log(error))
+
+                        .finally(() => {
+                            this.loading = false;
+                            this.buttonLabel = "Submit";
+                        });
+                },
+
+
+            };
+        }
+    </script>
+</body>
+
+</html>

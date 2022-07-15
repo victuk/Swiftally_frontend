@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="style.css" />
-
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script defer src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -69,15 +70,15 @@
           <p><b>Election management wrapped in one platform</b></p>
         </div>
       </div>
-     
-    <div class="bgImg">
-      <div class="bgImg1">
-        <img src="images/happy-earth/amico.svg" alt="">
+
+      <div class="bgImg">
+        <div class="bgImg1">
+          <img src="images/happy-earth/amico.svg" alt="">
+        </div>
+        <div class="bgImg2">
+          <img src="images/smiley-face/amico.svg" alt="">
+        </div>
       </div>
-      <div class="bgImg2">
-        <img src="images/smiley-face/amico.svg" alt="">
-      </div>
-    </div>
   </main>
   <script src="./js/utilities/uploadToCloudinary.js"></script>
   <script>
@@ -91,16 +92,16 @@
 
       const response = await uploadImage(schoolLogo.files[0]);
 
-    let schoolDetails = {
-      fullName: fullName.value,
-      schoolName: schoolName.value,
-      schoolLogo: response.secure_url,
-      schoolLogoPublicId: response.public_id
-    }
+      let schoolDetails = {
+        fullName: fullName.value,
+        schoolName: schoolName.value,
+        schoolLogo: response.secure_url,
+        schoolLogoPublicId: response.public_id
+      }
 
-    localStorage.setItem('schoolDetails', JSON.stringify(schoolDetails));
+      localStorage.setItem('schoolDetails', JSON.stringify(schoolDetails));
 
-    location.assign('role.html');
+      location.assign('role.html');
 
     });
 

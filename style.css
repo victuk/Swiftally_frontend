@@ -84,17 +84,13 @@ body {
   font-size: 2rem;
 }
 .btn1 a {
-  content: 'submit';
+  /* content: 'submit';
   width: 100%;
   background-color: var(--color-primary);
   color: white;
   padding: 6px 16px;
   /* margin: ; */
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  /* margin-top: 3rem; */
-  text-decoration: none;
+ 
 }
 
 header {
@@ -144,7 +140,7 @@ main {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  z-index: -1;
+  z-index: 10;
 }
 .bgImg1 img {
   position: relative;

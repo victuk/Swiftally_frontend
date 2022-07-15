@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+  <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+  <script defer src="alpine3.10.2.min.js"></script>
+  <!-- <script defer src="scripts/script.js"></script> -->
+  <!-- <script defer src="scripts/script1.js"></script> -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+
+  <title>Swiftvote</title>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      
+      <img src="image/Swiftvote Logo.png" alt="" />
+  </div>
+
+  </header>
+  <div class="" x-data="submitForm()">
+    <main x-cloak>
+      <!-- first signup -->
+      
+
+      <!-- verify email -->
+      <form action="#" name="upload-form" method="PUT" @submit.prevent="submitData" type="multipart" id="form" >
+      <div class="container-3" id="#verify">
+        <div class="right">
+          <div class="text">
+            <img src="images/clarity_email-outline-badged.png" alt="">
+          </div>
+          <h2>Check your Email</h2>
+          <p>A six digit code has been sent to your email, do confirm let's row </p>
+          <div class="team">
+            <input type="text" name="code" class="code-input" x-model="verifyDig.input1">
+
+            <input type="text" name="code" class="code-input" x-model="verifyDig.input2" required>
+
+            <input type="text" name="code" class="code-input" x-model="verifyDig.input3" required>
+
+            <div class="seperator">
+              <h1>&dash;</h1>
+            </div>
+
+            <input type="text" name="code" class="code-input" x-model="verifyDig.input4" required>
+
+            <input type="text" name="code" class="code-input" x-model="verifyDig.input5" required>
+
+            <input type="text" name="code" class="code-input" x-model="verifyDig.input6" required>
+
+          </div>
+          <div class="btn3">
+          </div>
+
+          <div class="btn">
+            <div class="btn1">
+              <p>Did'nt receive it? <span><a href="#">Resend Code</a></span></p>
+            </div>
+            <div class="btn2">
+              <button type="submit" @click="submitData()">Verify</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      </form>
+      <div class="bgImg">
+        <div class="bgImg1">
+          <img src="images/happy-earth/amico.svg" alt="">
+        </div>
+        <div class="bgImg2">
+          <img src="images/smiley-face/amico.svg" alt="">
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const inputElements = [...document.querySelectorAll('input.code-input')]
+
+inputElements.forEach((ele, index) => {
+    ele.addEventListener('keydown', (e) => {
+        // if the keycode is backspace & the current field is empty
+        // focus the input before the current. Then the event happens
+        // which will clear the "before" input box.
+        if (e.keyCode === 8 && e.target.value === '') inputElements[Math.max(0, index - 1)].focus()
+    })
+    ele.addEventListener('input', (e) => {
+        // take the first character of the input
+        // this actually breaks if you input an emoji like 👨‍👩‍👧‍👦....
+        // but I'm willing to overlook insane security code practices.
+        const [first, ...rest] = e.target.value
+        e.target.value = first ?? '' // first will be undefined when backspace was entered, so set the input to ""
+        const lastInputBox = index === inputElements.length - 1
+        const insertedContent = first !== undefined
+        if (insertedContent && !lastInputBox) {
+            // continue to input the rest of the string
+            inputElements[index + 1].focus()
+            inputElements[index + 1].value = rest.join('')
+            inputElements[index + 1].dispatchEvent(new Event('input'))
+        }
+    })
+})
+//     function submitForm() {
+//     return {
+        
+// // mini example on how to pull the data on submit of the form
+//   submitData (){
+//    const code = [...document.getElementsByTagName('input')]
+//         .filter(({ name }) => name)
+//         .map(({ value }) => value)
+//         .join('')
+
+//         fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/verify-email', {
+//             method: 'PUT',
+//             headers: {
+//               'Content-Type': 'application/json',
+//             //   'regToken': ''
+//             },
+//             body: JSON.stringify(this.code, JSON.stringify(this.data.regToken))
+//           })
+//           .then((response) => {
+//                 if (response.status == 201) {
+//                   window.location.replace('password.html')
+//                   this.status = true;
+//                 } else {
+//                   throw new Error("Your registration failed");
+//                 }
+//               })
+//           .then((json) => console.log(json))
+//           .catch(error => console.log(error))
+
+//           .finally(() => {
+//             this.loading = false;
+//             this.buttonLabel = 'Submit'
+//           })
+// }
+//     }
+// }
+
+function submitForm() {
+        return {
+          xtrue: true,
+          verifyDig: {
+            input1: "", 
+            input2: "",
+            input3: "",
+            input4: "",
+            input5: "",
+            input6: "",
+            
+          },
+            verify: "" + this.input1 + this.input2 + this.input3 + this.input4 + this.input5 + this.input6,
+          
+          open: "false",
+          status: false,
+          loading: false,
+          isError: false,
+          buttonLabel: "Submit",
+
+          submitData() {
+            const verify= "" + this.verifyDig.input1 + this.verifyDig.input2 + this.verifyDig.input3 + this.verifyDig.input4 + this.verifyDig.input5 + this.verifyDig.input6;
+            
+            this.verifyDig.verify = verify;
+            this.buttonLabel = "Submitting...";
+            this.loading = true;
+            fetch(
+              "https://swiftvote-test-api.herokuapp.com/v1/school-election/verify-email",
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                  "regToken": ""
+                },
+                
+                body: JSON.stringify(this.verifyDig),
+              }
+            )
+              .then((response) => {
+                // if (response.status == 201) {
+                //   window.location.replace('password.html')
+                //   this.status = true;
+                // } else {
+                //   throw new Error("Your registration failed");
+                // }
+
+              })
+              .then(json => console.log(json))
+              .catch((error) => console.log(error))
+
+              .finally(() => {
+                this.loading = false;
+                this.buttonLabel = "Submit";
+              });
+          },
+
+          
+        };
+      }
+//     const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': 'fa1c39cd3fmsh981a73354942cfap15fe39jsn54bf1b463894',
+// 		'X-RapidAPI-Host': 'nigeria-universites.p.rapidapi.com'
+// 	}
+// };
+
+// fetch('https://nigeria-universites.p.rapidapi.com/universities/', options)
+// 	.then(response => response.json())
+// 	.then(res => {
+//     let allschools = data.result.universities;
+//       let html = '';
+//       for (var i = 0; i < allschools.length; i++) {
+//         html += "<option value=" + allschools[i].slug + ">" + allschools[i].name + "</option>"
+//       }
+//       document.getElementById("school").innerHTML = html;
+//   })
+// 	.catch(err => console.error(err));
+
+    // function verifyPage() {
+    //   return {
+    //     reg: 4,
+    //     verifybt() {
+    //       this.reg;
+    //     }
+    //   }
+    // }
+
+  </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+
+
+</html>
