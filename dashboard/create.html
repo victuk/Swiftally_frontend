@@ -172,11 +172,13 @@
     </header>
     <main>
         <div class="container" x-data="submitForm()">
-            <div class="pagination">
-                <div class="page">
+            <div class="pagination ">
+                <a href="create.html">
+                <div class="page cpointer">
                     <div class="badge">1</div>
                     <h4>Election details</h4>
                 </div>
+                </a>
                 <div class="line1"></div>
                 <div class="page1">
                     <div class="badge">2</div>
@@ -216,15 +218,18 @@
                                 </label>
                             </div>
                             <div class="title">
-                                <label for="adminId ">Election title</label><br>
-                                <input type="text" id="adminId" name="adminId" placeholder="" x-model="formData.title"
+                                <label for="etitle ">Election title</label><br>
+                                <input type="text" id="etitle" name="etitle" placeholder="title here..." x-model="formData.title"
                                     class="electoraltype">
                             </div>
                         </div>
                         <div class="electiontitle">
                             <div class="title">
-                                <label for="adminId ">Type of electoral system</label><br>
-                                <input type="text" id="adminId" name="adminId" placeholder="" x-model="formData.title">
+                                <label for="esystem">Type of electoral system</label><br>
+                                <select name="esystem" id="esystem">
+                                    <option value="disable" disabled>Select...</option>
+                                    <option value="First past the post">Plurality electoral system</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -233,16 +238,24 @@
                         <div class="type">
                             <div class="title">
                                 <label for="adminId ">Type of election</label><br>
-                                <input type="text" id="adminId" name="adminId" placeholder="Select type of election"
-                                    x-model="formData.title">
+                                <select name="t_election" id="t_election">
+                                    <option value="disable" disabled>Select...</option>
+                                    <option value="General">General</option>
+                                    <option value="General">SUG</option>
+                                    <option value="General">Department</option>
+                                    <option value="General">Faculty</option>
+                                    <option value="General">Association</option>
+                                    <option value="General">Social contest</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="electiontype">
                             <div class="title">
-                                <label for="adminId ">Duration</label><br>
-                                <input type="text" id="adminId" name="adminId" placeholder="start"
+                                <label for="adminId ">Duration
+                                <input type="text" id="start" name="sts" placeholder="start"
                                     x-model="formData.title">
+                                </label><br>
                             </div>
                             <div class="title">
                                 <label for="adminId "></label><br>
