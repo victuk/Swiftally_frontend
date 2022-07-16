@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="style.css"/> -->
+    <link rel="stylesheet" href="help.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"></script>
+    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+    <script defer src="alpine3.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.css"></script>
+
+    <title>Swiftvote</title>
+</head>
+
+<body x-data>
+    <main>
+        <aside>
+            <div class="side-menu">
+                <div class="explore" x-data="dropdown" @click="toggle()">
+                    <div class=""><i class="fas fa-th"></i></div>
+
+                    <div class="dropdown" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                        x-transition:leave.delay.20ms>
+                        <div class="account-1">
+                            <div class="middle"><b>Explore other products</b></div>
+                            <div class="general">
+                                <div class="swiftpoll">
+                                    <i class="fa-solid fa-square-poll-vertical"></i>
+
+                                    <b>swiftpoll</b>
+                                </div>
+                                <div class="game">
+                                    <i class="fa-solid fa-gamepad"></i>
+                                    <b>Gamification</b>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+                <div class="other-elections"><i class="fa-light fa-plus"></i></div>
+                <div class="logout">
+                    <i class="fa-light fa-arrow-right-from-bracket"></i>
+                </div>
+            </div>
+            <div class="side">
+                <div class="logo">
+                    <img src="image/Swiftvote Logo.png" alt="" />
+                </div>
+                <div class="election">
+                    <div class="image"></div>
+                    <div class="text">
+                        <p>No election</p>
+                        <small>Faculty election</small>
+                    </div>
+                </div>
+                <hr />
+                <div class="sidebar-items">
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">
+                                <i class="fas fa-th-large"></i>
+                                <h3>Dashboard</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="noelection.html">
+                                <i class="fa-solid fa-user"></i>
+                                <h3>Candidate</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="noelection.html">
+                                <i class="fa-solid fa-users"></i>
+                                <h3>Voter</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin.html">
+                                <i class="fa-solid fa-user-graduate"></i>
+                                <h3>Admin</h3>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <ul>
+                        <li>
+                            <a href="noelection.html">
+                                <i class="fa-solid fa-toolbox"></i>
+                                <h3>Tool</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="noelection.html">
+                                <i class="fa-solid fa-money-check-dollar"></i>
+                                <h3>Payment</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="noelection.html">
+                                <i class="fa-solid fa-gear"></i>
+                                <h3>Setting</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="noelection.html">
+                                <i class="fa-regular fa-circle-question"></i>
+                                <h3>Help</h3>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+                <br />
+                <div class="more-links">
+                    <div class="social-links">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-twitter-square"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="img">
+                        <img src="images/Beta version.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <div class="container">
+            <nav id="navbar">
+                <div class="create-election">
+                    <input type="button" value="Create election +" />
+                    <input type="button" value="Share election" />
+                </div>
+                <div class="search">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input type="search" name="Search" id="search" placeholder="Search" />
+                </div>
+
+                <div class="extra-info">
+                    <div class="box-1" x-data="dropdown()">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+
+                    <div class="" x-data="dropdown()">
+                        <div class="box-2" @click="toggle()">
+                            <i class="fa-solid fa-info"></i>
+                        </div>
+                        <!-- info dropdown -->
+                        <div class="dropdown-3" x-cloak x-show="isOpen" @click.away="isOpen = false"
+                            x-transition:enter.10ms x-transition:leave.delay.20ms>
+                            <div class="account">
+                                <div class="empty"></div>
+                                <div class="middle">Information page</div>
+                                <div class="close" @click="toggle()">
+                                    <i class="fa-light fa-xmark"></i>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="conten" id="info">
+                                <div class="info">
+                                    <p>
+                                        <b>
+                                            Note that once the election starts, you will not be able
+                                            to register voters and candidates again</b>
+                                    </p>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="profil">
+                                    <i class="fa-light fa-arrow-left"></i>
+                                    <i class="fa-light fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- info dropdown ends-->
+                    </div>
+
+                    <div class="" x-data="dropdown()">
+                        <div class="box-3" @click="toggle()" @keydown.escape="isOpen = false">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+
+                        <!-- Notification dropdown -->
+                        <div class="dropdown-2" x-cloak x-show="isOpen" @click.away="isOpen = false"
+                            x-transition:enter.10ms x-transition:leave.delay.20ms>
+                            <div class="account">
+                                <div class="empty"></div>
+                                <div class="middle">Notifications</div>
+                                <div class="close" @click="toggle()">
+                                    <i class="fa-light fa-xmark"></i>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="content" id="content">
+                                <div class="img">
+                                    <img src="images/telescope/amico.png" alt="" />
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="profile">
+                                    <div class="text">
+                                        <p><b>You've got no notification</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- notification dropdown ends -->
+                    </div>
+
+                    <div class="" x-data="dropdown()">
+                        <div class="box" @click="toggle()" @keydown.escape="isOpen = false">
+                            <span>UJ</span>
+                        </div>
+
+                        <!-- modal for profile -->
+
+                        <div class="dropdown-1" x-cloak x-show="isOpen" @click.away="isOpen = false"
+                            x-transition:enter.10ms x-transition:leave.delay.20ms>
+                            <div class="account">
+                                <div class="empty"></div>
+                                <div class="middle">Account</div>
+                                <div class="close" @click="toggle()">
+                                    <i class="fa-light fa-xmark"></i>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="content">
+                                <div class="profile">
+                                    <div class="box">
+                                        <span>UJ</span>
+                                    </div>
+
+                                    <div class="text">
+                                        <p>Uncle Jerry</p>
+                                        <small>Unclejerry@gmail.com</small>
+                                    </div>
+                                </div>
+                                <div class="filter">
+                                    <input type="button" value="Admin ID: @unclejerry.2345" id="id-input" />
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="details">
+                                    <ul>
+                                        <li>
+                                            <a href="">Account Preference</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="">Payment method</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="">Settings</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="">Help</a>
+                                        </li>
+                                    </ul>
+                                    <hr />
+                                    <ul>
+                                        <li>
+                                            <a href=""><i class="fa-light fa-arrow-right-from-bracket"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal for profile ends -->
+                    </div>
+                </div>
+            </nav><br>
+
+            <div class="center">
+                <div class="col1">
+                    <div class="row1">
+                        <div class="heading">
+                            <div class="faqs">FAQS</div>
+                            <div class="help-center">Help Center</div>
+                            <div class="Videos">Videos</div>
+                        </div>
+                        <hr>
+                        <div class="space"></div>
+                        <div class="questions cpointer">
+                            <i class="fas fa-plus"></i>
+                            <p>How can I add other admins</p>
+                        </div>
+                        <div class="panel">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, a quam? Repellendus iure
+                            non doloremque consequuntur, quas minus aut deserunt exercitationem atque sapiente unde
+                            provident maxime obcaecati, praesentium, at voluptatum?
+                        </div>
+                        <div class="questions">
+                            <i class="fas fa-plus"></i>
+                            <p>How can I add other admins</p>
+                        </div>
+
+                        <div class="panel">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, a quam? Repellendus iure
+                            non doloremque consequuntur, quas minus aut deserunt exercitationem atque sapiente unde
+                            provident maxime obcaecati, praesentium, at voluptatum?
+                        </div>
+
+
+                        <div class="questions">
+                            <i class="fas fa-plus"></i>
+                            <p>How can I add other admins</p>
+                        </div>
+                        <div class="panel">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, a quam? Repellendus iure
+                            non doloremque consequuntur, quas minus aut deserunt exercitationem atque sapiente unde
+                            provident maxime obcaecati, praesentium, at voluptatum?
+                        </div>
+
+                        <div class="questions">
+                            <i class="fas fa-plus"></i>
+                            <p>How can I add other admins</p>
+                        </div>
+                        <div class="panel">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, a quam? Repellendus iure
+                            non doloremque consequuntur, quas minus aut deserunt exercitationem atque sapiente unde
+                            provident maxime obcaecati, praesentium, at voluptatum?
+                        </div>
+
+                        <div class="questions">
+                            <i class="fas fa-plus"></i>
+                            <p>How can I add other admins</p>
+                        </div>
+                        <div class="panel">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, a quam? Repellendus iure
+                            non doloremque consequuntur, quas minus aut deserunt exercitationem atque sapiente unde
+                            provident maxime obcaecati, praesentium, at voluptatum?
+                        </div>
+
+                        <div class="questions">
+                            <i class="fas fa-plus"></i>
+                            <p>How can I add other admins</p>
+                        </div>
+                        <div class="panel">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, a quam? Repellendus iure
+                            non doloremque consequuntur, quas minus aut deserunt exercitationem atque sapiente unde
+                            provident maxime obcaecati, praesentium, at voluptatum?
+                        </div>
+
+                    </div>
+                    <div class="row2">
+                        <div class="feedback">
+                            <h2>Feedback center</h2>
+                            <div class="sugges">
+                                <label for="">I have...</label>
+                                <select name="sel" id="sel">
+                                    <option value="Suggestion">suggestion</option>
+                                    <option value="contribution">contribution</option>
+                                </select>
+                            </div>
+                            <div class="comment">
+                                <label for="">My comment</label>
+                                <textarea name="" id="" cols="30" rows="5" placeholder="write comment"></textarea>
+                            </div>
+                            <input type="submit" value="Submit">
+
+                        </div>
+                        <div class="getintouch">
+                            <h2>Get in Touch</h2>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <h4>Alvan hostel, University of Nigeria, Nsukka</h4>
+
+                            <i class="fa-solid fa-phone-flip"></i>
+                            <h4>+234(0)9060316383</h4>
+
+                            <i class="fa-solid fa-envelope"></i>
+                            <h4>info@swiftvote.io</h4>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <script>
+        // document.addEventListener("alpine:init", () => {
+        //   Alpine.store("mobileNav", {
+        //     open: false,
+
+        //     toggle() {
+        //       this.open = !this.open;
+        //     },
+
+        //   });
+        // });
+        // document.addEventListener("alpine:init", () => {
+        //   Alpine.store("notifBar", {
+        //     open: false,
+
+        //     notif() {
+        //       this.open = !this.open;
+        //     },
+        //   });
+        // });
+        function dropdown() {
+            return {
+                isOpen: false,
+
+                toggle() {
+                    this.isOpen = !this.isOpen;
+                },
+            };
+        }
+
+        function dashboardData() {
+            return {
+                chart: 1,
+                n_chart: 9,
+
+                next_chart() {
+                    this.chart++;
+                    if (this.chart > this.n_chart) {
+                        this.chart = 1;
+                    }
+                },
+
+                prev_chart() {
+                    this.chart--;
+                    if (this.chart < 1) {
+                        this.chart = this.n_chart;
+                    }
+                }
+
+            }
+        }
+
+        var acc = document.getElementsByClassName("questions");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        window.onscroll = function () { myFunction() };
+
+        var navbar = document.getElementById("navbar");
+
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+
+        window.onscroll = function () { myFunction() };
+
+        var navbar = document.getElementById("navbar");
+
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        } 
+    </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/index.js" defer></script>
+<script src="js/toolscript.js"></script>
+
+</html>
