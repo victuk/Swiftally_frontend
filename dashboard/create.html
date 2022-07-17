@@ -228,7 +228,7 @@
                                 <label for="esystem">Type of electoral system</label><br>
                                 <select name="esystem" id="esystem">
                                     <option value="disable" disabled>Select...</option>
-                                    <option value="First past the post">Plurality electoral system</option>
+                                    <option value="first-past-the-post">Plurality electoral system</option>
                                 </select>
                             </div>
                         </div>
@@ -240,12 +240,12 @@
                                 <label for="adminId ">Type of election</label><br>
                                 <select name="t_election" id="t_election">
                                     <option value="disable" disabled>Select...</option>
-                                    <option value="General">General</option>
-                                    <option value="General">SUG</option>
-                                    <option value="General">Department</option>
-                                    <option value="General">Faculty</option>
-                                    <option value="General">Association</option>
-                                    <option value="General">Social contest</option>
+                                    <option value="general">General</option>
+                                    <option value="sug">SUG</option>
+                                    <option value="department">Department</option>
+                                    <option value="faculty">Faculty</option>
+                                    <option value="association">Association</option>
+                                    <option value="social-contest">Social contest</option>
                                 </select>
                             </div>
                         </div>
@@ -253,80 +253,72 @@
                         <div class="electiontype">
                             <div class="title">
                                 <label for="adminId ">Duration
-                                <input type="text" id="start" name="sts" placeholder="start"
+                                <input type="datetime-local" id="start" name="sts" placeholder="start"
                                     x-model="formData.title">
                                 </label><br>
                             </div>
                             <div class="title">
                                 <label for="adminId "></label><br>
-                                <input type="text" id="adminId" name="adminId" placeholder="Finish"
+                                <input type="datetime-local" id="finish" name="finish" placeholder="Finish"
                                     x-model="formData.title">
                             </div>
                         </div>
                     </div>
                 </div>
-                <button value="next" id="next">
+                <button id="next">
                     Next
                 </button>
             </div>
     </main>
+    <script src="../js/utilities/uploadToCloudinary.js"></script>
     <script>
-        function submitForm() {
-            return {
-                xtrue: true,
-                formData: {
-                    adminID: "",
-                    password: ""
+
+        const etitle = document.getElementById('etitle');
+        const logo = document.getElementById('logo');
+        const esystem = document.getElementById('esystem');
+        const t_election = document.getElementById('t_election');
+        const electionStart = document.getElementById('start');
+        const electionFinish = document.getElementById('finish');
+        const nextProcedure = document.getElementById('next');
+
+        
+
+        nextProcedure.addEventListener('click', async function() {
+            const response = await uploadImage(logo.files[0]);
+
+            const res = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login', {
+                method: 'POST',
+                headers: {
+                    accesstoken: localStorage.getItem('accesstoken'),
+                    'Content-Type': 'application/json'
                 },
-                open: "false",
-                status: false,
-                loading: false,
-                isError: false,
-                buttonLabel: "Submit",
-                isEmail(email) {
-                    var re = /\S+@\S+\.\S+/;
-                    return re.test(email);
-                },
+                body: JSON.stringify({
+                    electionTitle: etitle.value,
+                    electionLogo: res.secure_url,
+                    electionLogoPublicId: res.public_id,
+                    electoralSystem: esystem.value,
+                    electionType: t_election.value,
+                    durationStart: electionStart.value,
+                    durationEnd: electionFinish.value
+                })
+            });
 
-                submitData() {
-                    // if (!this.formData.email.length) {
-                    //   alert("Please put in the right email!");
-                    //   return;
-                    // }
+            const data = await res.json();
 
-                    this.buttonLabel = "Submitting...";
-                    this.loading = true;
-                    fetch(
-                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(this.formData),
-                        }
-                    )
-                        .then((response) => {
-                            if (response == status) {
-                                // location.replace('dashboard.html');
-                                console.log(response)
-                                this.status = true;
-                            } else {
-                                throw new Error("Your login failed");
-                            }
-                        })
-                        .then((json) => console.log(json))
-                        .catch((error) => console.log(error))
+            if(res.status == 201) {
+                console.log(data);
+            }
 
-                        .finally(() => {
-                            this.loading = false;
-                            this.buttonLabel = "Submit";
-                        });
-                },
+            
+        });
 
 
-            };
-        }
+        
+
+        // this.buttonLabel = "Submitting...";
+        // this.loading = true;
+            // "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
+
     </script>
 </body>
 
