@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- <link rel="stylesheet" href="style.css"/> -->
+  <link rel="stylesheet" href="voter.css" />
+  <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+  <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+  <script defer src="alpine3.10.2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.css"></script>
+
+  <title>Swiftvote</title>
+</head>
+
+<body x-data>
+  <main>
+    <aside>
+      <div class="side-menu">
+        <div class="explore" x-data="dropdown" @click="toggle()">
+          <div class=""><i class="fas fa-th"></i></div>
+
+          <div class="dropdown" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+            x-transition:leave.delay.20ms>
+            <div class="account-1">
+              <div class="middle"><b>Explore other products</b></div>
+              <div class="general">
+                <div class="swiftpoll">
+                  <i class="fa-solid fa-square-poll-vertical"></i>
+
+                  <b>swiftpoll</b>
+                </div>
+                <div class="game">
+                  <i class="fa-solid fa-gamepad"></i>
+                  <b>Gamification</b>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <div class="other-elections"><i class="fa-light fa-plus"></i></div>
+        <div class="logout">
+          <i class="fa-light fa-arrow-right-from-bracket"></i>
+        </div>
+      </div>
+      <div class="side">
+        <div class="logo">
+          <img src="image/Swiftvote Logo.png" alt="" />
+        </div>
+        <div class="election">
+          <div class="image"></div>
+          <div class="text">
+            <p>No election</p>
+            <small>Faculty election</small>
+          </div>
+        </div>
+        <hr />
+        <div class="sidebar-items">
+          <ul>
+            <li>
+              <a href="dashboard.html">
+                <i class="fas fa-th-large"></i>
+                <h3>Dashboard</h3>
+              </a>
+            </li>
+            <li>
+              <a href="candidate.html">
+                <i class="fa-solid fa-user"></i>
+                <h3>Candidate</h3>
+              </a>
+            </li>
+            <li>
+              <a href="voter.html">
+                <i class="fa-solid fa-users"></i>
+                <h3>Voter</h3>
+              </a>
+            </li>
+            <li>
+              <a href="admin.html">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h3>Admin</h3>
+              </a>
+            </li>
+          </ul>
+          <hr />
+          <ul>
+            <li>
+              <a href="tool.html">
+                <i class="fa-solid fa-toolbox"></i>
+                <h3>Tool</h3>
+              </a>
+            </li>
+            <li>
+              <a href="payment.html">
+                <i class="fa-solid fa-money-check-dollar"></i>
+                <h3>Payment</h3>
+              </a>
+            </li>
+            <li>
+              <a href="setting.html">
+                <i class="fa-solid fa-gear"></i>
+                <h3>Setting</h3>
+              </a>
+            </li>
+            <li>
+              <a href="help.html">
+                <i class="fa-regular fa-circle-question"></i>
+                <h3>Help</h3>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr />
+        <br />
+        <div class="more-links">
+          <div class="social-links">
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-twitter-square"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          <div class="img">
+            <img src="images/Beta version.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="container">
+      <nav>
+        <div class="create-election">
+          <input type="button" value="Create election +" />
+          <input type="button" value="Share election" />
+        </div>
+        <div class="search">
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <input type="search" name="Search" id="search" placeholder="Search" />
+        </div>
+
+        <div class="extra-info">
+          <div class="box-1" x-data="dropdown()">
+            <i class="fa-solid fa-moon"></i>
+          </div>
+
+          <div class="" x-data="dropdown()">
+            <div class="box-2" @click="toggle()">
+              <i class="fa-solid fa-info"></i>
+            </div>
+            <!-- info dropdown -->
+            <div class="dropdown-3" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+              x-transition:leave.delay.20ms>
+              <div class="account">
+                <div class="empty"></div>
+                <div class="middle">Information page</div>
+                <div class="close" @click="toggle()">
+                  <i class="fa-light fa-xmark"></i>
+                </div>
+              </div>
+              <hr />
+              <div class="conten" id="info">
+                <div class="info">
+                  <p>
+                    <b>
+                      Note that once the election starts, you will not be able
+                      to register voters and candidates again</b>
+                  </p>
+                </div>
+                <br />
+                <hr />
+                <div class="profil">
+                  <i class="fa-light fa-arrow-left"></i>
+                  <i class="fa-light fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+            <!-- info dropdown ends-->
+          </div>
+
+          <div class="" x-data="dropdown()">
+            <div class="box-3" @click="toggle()" @keydown.escape="isOpen = false">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+
+            <!-- Notification dropdown -->
+            <div class="dropdown-2" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+              x-transition:leave.delay.20ms>
+              <div class="account">
+                <div class="empty"></div>
+                <div class="middle">Notifications</div>
+                <div class="close" @click="toggle()">
+                  <i class="fa-light fa-xmark"></i>
+                </div>
+              </div>
+              <hr />
+              <div class="content" id="content">
+                <div class="img">
+                  <img src="images/telescope/amico.png" alt="" />
+                </div>
+                <br />
+                <hr />
+                <div class="profile">
+                  <div class="text">
+                    <p><b>You've got no notification</b></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- notification dropdown ends -->
+          </div>
+
+          <div class="" x-data="dropdown()">
+            <div class="box" @click="toggle()" @keydown.escape="isOpen = false">
+              <span>UJ</span>
+            </div>
+
+            <!-- modal for profile -->
+
+            <div class="dropdown-1" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+              x-transition:leave.delay.20ms>
+              <div class="account">
+                <div class="empty"></div>
+                <div class="middle">Account</div>
+                <div class="close" @click="toggle()">
+                  <i class="fa-light fa-xmark"></i>
+                </div>
+              </div>
+              <hr />
+              <div class="content">
+                <div class="profile">
+                  <div class="box">
+                    <span>UJ</span>
+                  </div>
+
+                  <div class="text">
+                    <p>Uncle Jerry</p>
+                    <small>Unclejerry@gmail.com</small>
+                  </div>
+                </div>
+                <div class="filter">
+                  <input type="button" value="Admin ID: @unclejerry.2345" id="id-input" />
+                </div>
+                <br />
+                <hr />
+                <div class="details">
+                  <ul>
+                    <li>
+                      <a href="">Account Preference</a>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <a href="">Payment method</a>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <a href="">Settings</a>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <a href="">Help</a>
+                    </li>
+                  </ul>
+                  <hr />
+                  <ul>
+                    <li>
+                      <a href=""><i class="fa-light fa-arrow-right-from-bracket"></i>Logout</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- modal for profile ends -->
+          </div>
+        </div>
+      </nav><br>
+      <div class="position">
+        <div class="election-position">
+          <input type="button" value="Position 1" />
+          <input type="button" value="Position 2" />
+          <input type="button" value="Position 3" />
+          <input type="button" value="Position 5" />
+          <input type="button" value="Position 5" />
+          <input type="button" value="Position 6" />
+
+          <div class="" x-data="dropdown()">
+            <div class="filter" @click="toggle()" @keydown.escape="isOpen = false">
+              <i class="fa-solid fa-bars-filter"></i>
+              <input type="button" value="filter" />
+            </div>
+
+            <div class="dropdown-4" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+              x-transition:leave.delay.20ms>
+              <div class="accountx">
+                <div class="middle">Keyword</div>
+                <div class="close" @click="toggle()">
+                  <i class="fa-light fa-xmark"></i>
+                </div>
+              </div>
+              <div class="search-2">
+                <input type="search" name="Search" id="search" placeholder="Enter Keyword" />
+              </div>
+              <small> select positions you will like to see</small>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 1</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 2</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 3</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 4</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 5</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 6</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 7</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 8</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 9</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 10</label>
+              </div>
+              <div class="btn-filter">
+                <button>Done</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="" x-data="dropdown()">
+            <div class="filter" @click="toggle()" @keydown.excape="isOpen = false">
+              <input type="button" value="Show menu" />
+            </div>
+            <div class="dropdown-5" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+              x-transition:leave.delay.20ms>
+              <div class="accounty">
+                <div class="middle">See candidate list</div>
+              </div>
+              <div class="hr"></div>
+              <div class="accounty">
+                <div class="middle">See voter list</div>
+              </div>
+              <div class="hr"></div>
+
+              <p><b>All positions</b></p>
+              <div class="search-2">
+                <input type="search" name="Search" id="search" placeholder="Enter Keyword" />
+              </div>
+              <p>search for available positions</p>
+
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 1</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 2</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 3</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 4</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 5</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 6</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 7</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 8</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 9</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="" id="" />
+                <label for="checkbox">Position 10</label>
+              </div>
+              <div class="btn-filter">
+                <button>Done</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <div class="col1">
+          <div class="row1">
+            
+            <div class="chart" x-data="dashboardData()">
+              <div class="chartx" x-show="chart==1">
+                <h2 style="margin: 2rem;">Candidates Data</h2>
+
+                <div id="chart3"></div>
+              </div>
+             
+              <div class="btn">
+                <div class="btn1">
+                  <button type="button" @click="prev_reg()"><i class="fa-solid fa-chevron-left"></i></button>
+                </div>
+                <div class="btn2">
+                  <button type="button" @click="next_reg()"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="col2">
+          <div class="row1">
+            <table>
+                <thead class="thead">
+                    <tr>
+                        <th>S/N</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Voted for</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+
+
+
+                <tbody>
+                        <tr class="first">
+                            <td>1</td>
+                            <td class="primary">Somto chika</td>
+                            <td >Civil Engineering</td>
+                            <td class="primary">Lisa Elizabeth</td>
+                            <td>8:00</td>
+                        </tr>
+                    
+                        <tr class="second">
+                            <td>1</td>
+                            <td class="primary">Somto chika</td>
+                            <td>Civil Engineering</td>
+                            <td class="primary">Lisa Elizabeth</td>
+                            <td>8:00</td>
+                        </tr>
+                        <tr class="second">
+                            <td>1</td>
+                            <td class="primary">Somto chika</td>
+                            <td>Civil Engineering</td>
+                            <td class="primary">Lisa Elizabeth</td>
+                            <td>8:00</td>
+                        </tr>
+                        <tr class="second">
+                            <td>1</td>
+                            <td class="primary">Somto chika</td>
+                            <td>Civil Engineering</td>
+                            <td class="primary">Lisa Elizabeth</td>
+                            <td>8:00</td>
+                        </tr> 
+                        <tr class="second">
+                            <td>1</td>
+                            <td class="primary">Somto chika</td>
+                            <td>Civil Engineering</td>
+                            <td class="primary">Lisa Elizabeth</td>
+                            <td>8:00</td>
+                        </tr>
+                        <tr class="second">
+                            <td>1</td>
+                            <td class="primary">Somto chika</td>
+                            <td>Civil Engineering</td>
+                            <td class="primary">Lisa Elizabeth</td>
+                            <td>8:00</td>
+                        </tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="row2">
+            <div class="chart" x-show="chart">
+              <h2 style="margin: 2rem;">Faculty chart</h2>
+
+              <div id="chart6"></div>
+              <div class="btn">
+                <div class="btn1">
+                  <button type="button" @click="prev_reg()"><i class="fa-solid fa-chevron-left"></i></button>
+                </div>
+                <div class="btn2">
+                  <button type="button" @click="next_reg()"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // document.addEventListener("alpine:init", () => {
+    //   Alpine.store("mobileNav", {
+    //     open: false,
+
+    //     toggle() {
+    //       this.open = !this.open;
+    //     },
+
+    //   });
+    // });
+    // document.addEventListener("alpine:init", () => {
+    //   Alpine.store("notifBar", {
+    //     open: false,
+
+    //     notif() {
+    //       this.open = !this.open;
+    //     },
+    //   });
+    // });
+    function dropdown() {
+      return {
+        isOpen: false,
+
+        toggle() {
+          this.isOpen = !this.isOpen;
+        },
+      };
+    }
+
+    function dashboardData() {
+      return {
+        chart: 1,
+        n_chart: 9,
+
+        next_chart() {
+          this.chart++;
+          if (this.chart > this.n_chart) {
+            this.chart = 1;
+          }
+        },
+
+        prev_chart() {
+          this.chart--;
+          if (this.chart < 1) {
+            this.chart = this.n_chart;
+          }
+        }
+
+      }
+    }
+  </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/index.js" defer></script>
+<script src="../js/toolscript.js"></script>
+
+</html>
