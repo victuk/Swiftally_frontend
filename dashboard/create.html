@@ -270,6 +270,7 @@
                 </button>
             </div>
     </main>
+    <script src="../js/utilities/baseUrl.js"></script>
     <script src="../js/utilities/uploadToCloudinary.js"></script>
     <script>
 
@@ -286,7 +287,7 @@
         nextProcedure.addEventListener('click', async function() {
             const response = await uploadImage(logo.files[0]);
 
-            const res = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login', {
+            const res = await fetch(baseUrl + 'school-election/create-election', {
                 method: 'POST',
                 headers: {
                     accesstoken: localStorage.getItem('accesstoken'),
@@ -294,8 +295,8 @@
                 },
                 body: JSON.stringify({
                     electionTitle: etitle.value,
-                    electionLogo: res.secure_url,
-                    electionLogoPublicId: res.public_id,
+                    electionLogo: response.secure_url,
+                    electionLogoPublicId: response.public_id,
                     electoralSystem: esystem.value,
                     electionType: t_election.value,
                     durationStart: electionStart.value,
@@ -307,6 +308,8 @@
 
             if(res.status == 201) {
                 console.log(data);
+                localStorage.setItem('electionID', data.electionID);
+                location.assign('regcand.html');
             }
 
             

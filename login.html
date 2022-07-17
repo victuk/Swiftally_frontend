@@ -46,6 +46,7 @@
       </div>
     </div>
   </main>
+  <script src="js/utilities/baseUrl.js"></script>
   <script>
     const adminID = document.getElementById('adminId');
     const password = document.getElementById('password');
@@ -58,30 +59,30 @@
 
       e.preventDefault();
 
-      let schoolLogin = {
-        adminID: adminID.value,
-        password: password.valu
-      }
      login.disabled= true;
 
-      console.log(JSON.stringify(schoolLogin));
 
-      let response = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/register-school-admin', {
+      let response = await fetch(baseUrl + 'school-election/admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(schoolLogin)
+        body: JSON.stringify({
+          adminID: adminID.value,
+          password: password.value
+        })
       });
 
       let data = await response.json();
 
-      if (response.status == 200) {
+      if (response.status == 200 && data.role == 'schoolAdmin') {
+      localStorage.setItem('accesstoken', data.accesstoken);
       location.assign('dashboard/index.html');
-
+      } else if (response.status == (400 || 404)) {
+        alert("Invalid login details");
+      } else {
+        return;
       }
-
-
 
     }, {once : true});
     
