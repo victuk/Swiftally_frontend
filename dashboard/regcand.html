@@ -235,11 +235,11 @@
                                 </thead>
                                 <tbody>
 
-                                    <template x-for="(field, index) in fields" :key="index">
+                                    <template x-for="(theList, index) in theLists" :key="index">
                                         <tr>
                                             <td>
                                                 <div class="in1">
-                                                    <input x-model="field.txt1" type="text" name="txt1[]"
+                                                    <input x-model="theList.candName" type="text" name="candName1[]"
                                                         class="form-control">
                                                 </div>
 
@@ -255,7 +255,7 @@
 
                                             <td>
                                                 <div class="in2">
-                                                    <input x-model="field.txt2" type="text" name="txt3[]"
+                                                    <input x-model="theList.pos" type="text" name="pos3[]"
                                                         class="form-control">
                                                 </div>
 
@@ -263,7 +263,7 @@
 
                                             <td>
                                                 <div class="in1">
-                                                    <input x-model="field.txt2" type="text" name="txt4[]"
+                                                    <input x-model="theList.level" type="text" name="level4[]"
                                                         class="form-control">
                                                 </div>
 
@@ -271,7 +271,7 @@
 
                                             <td>
                                                 <div class="in2">
-                                                    <textarea x-model="field.txt2" type="text" name="txt5[]"
+                                                    <textarea x-model="theList.manifesto" type="text" name="manifesto5[]"
                                                         class="form-control"></textarea>
                                                 </div>
 
@@ -294,10 +294,10 @@
         function submitForm() {
             return {
                 xtrue: true,
-                formData: {
-                    adminID: "",
+                theList:[ {
+                    candName: "",
                     password: ""
-                },
+                }],
                 open: "false",
                 status: false,
                 loading: false,
