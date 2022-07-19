@@ -174,10 +174,10 @@
         <div class="container" x-data="submitForm()">
             <div class="pagination ">
                 <a href="create.html">
-                <div class="page cpointer">
-                    <div class="badge">1</div>
-                    <h4>Election details</h4>
-                </div>
+                    <div class="page cpointer">
+                        <div class="badge">1</div>
+                        <h4>Election details</h4>
+                    </div>
                 </a>
                 <div class="line1"></div>
                 <div class="page1">
@@ -219,8 +219,8 @@
                             </div>
                             <div class="title">
                                 <label for="etitle ">Election title</label><br>
-                                <input type="text" id="etitle" name="etitle" placeholder="title here..." x-model="formData.title"
-                                    class="electoraltype">
+                                <input type="text" id="etitle" name="etitle" placeholder="title here..."
+                                    x-model="formData.title" class="electoraltype">
                             </div>
                         </div>
                         <div class="electiontitle">
@@ -252,82 +252,75 @@
 
                         <div class="electiontype">
                             <div class="title">
-                                <label for="adminId ">Duration
-                                <input type="text" id="start" name="sts" placeholder="start"
-                                    x-model="formData.title">
+                                <label for="start ">Duration
+                                    <input type="time" id="start" name="sts" placeholder="start"
+                                        x-model="formData.title" value="start">
                                 </label><br>
                             </div>
                             <div class="title">
-                                <label for="adminId "></label><br>
-                                <input type="text" id="adminId" name="adminId" placeholder="Finish"
+                                <label for="end "></label><br>
+                                <input type="time" id="end" name="duration" placeholder="Finish"
                                     x-model="formData.title">
                             </div>
                         </div>
                     </div>
                 </div>
-                <button value="next" id="next">
+                <button value="next" id="next" @click="$el.innerHTML = 'submiting'">
                     Next
                 </button>
             </div>
     </main>
     <script>
-        function submitForm() {
-            return {
-                xtrue: true,
-                formData: {
-                    adminID: "",
-                    password: ""
-                },
-                open: "false",
-                status: false,
-                loading: false,
-                isError: false,
-                buttonLabel: "Submit",
-                isEmail(email) {
-                    var re = /\S+@\S+\.\S+/;
-                    return re.test(email);
-                },
+        const electionTitle = document.getElementById('etitle');
+        const electionLogo = document.getElementById('logo');
+        const electoralSystem = document.getElementById('esystem');
+        const electionType = document.getElementById('t_election');
+        const durationStart = document.getElementById('start');
+        const durationEnd = document.getElementById('end');
+        const next = document.getElementById('next');
 
-                submitData() {
-                    // if (!this.formData.email.length) {
-                    //   alert("Please put in the right email!");
-                    //   return;
-                    // }
+        next.addEventListener('click', async function (e) {
+            e.preventDefault();
 
-                    this.buttonLabel = "Submitting...";
-                    this.loading = true;
-                    fetch(
-                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(this.formData),
-                        }
-                    )
-                        .then((response) => {
-                            if (response == status) {
-                                // location.replace('dashboard.html');
-                                console.log(response)
-                                this.status = true;
-                            } else {
-                                throw new Error("Your login failed");
-                            }
-                        })
-                        .then((json) => console.log(json))
-                        .catch((error) => console.log(error))
+            const response = await uploadImage(electionLogo.files[0]);
 
-                        .finally(() => {
-                            this.loading = false;
-                            this.buttonLabel = "Submit";
-                        });
-                },
+            let electionDetails = {
+                electionTitle: electionTitle.value,
+                electionLogo: response.secure_url,
+                electionPublicId: response.public_id,
+                electoralSystem: electoralSystem.value,
+                electionType: electionType.value,
+                durationStart: durationStart.value,
+                durationEnd: durationEnd.value
 
+            }
+            localStorage.setItem('electionDetails', JSON.stringify(electionDetails))
 
-            };
-        }
+            console.log(JSON.stringify(electionDetails))
+
+                let res = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/create-election', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                        accesstoken: localStorage.getItem('accesstoken')
+                    },
+                    body: JSON.stringify(electionDetails)
+                });
+
+                let data = await res.json();
+                console.log(res.json);
+
+                // location.assign('regcand.html')
+
+        })
+
+        if(!localStorage.getItem('accesstoken')) {
+      location.assign('../login.html');
+    }
     </script>
 </body>
+<script src="../js/utilities/uploadToCloudinary.js"></script>
+<script src="../js/utilities/baseUrl.js"></script>
+
 
 </html>
