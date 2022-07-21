@@ -270,6 +270,21 @@
                                 <label for="adminId ">Duration
                                 <input type="datetime-local" id="start" name="sts" placeholder="start"
                                     x-model="formData.title">
+
+                                </label><br>
+                            </div>
+                            <div class="title">
+                                <label for="adminId "></label><br>
+                                <input type="datetime-local" id="finish" name="finish" placeholder="Finish"/>
+                               
+                            </div>
+                        </div>
+                        <!-- <div class="electiontype">
+                            <div class="title">
+                                <label for="start ">Duration
+                                    <input type="time" id="start" name="sts" placeholder="start"
+                                        x-model="formData.title" value="start">
+
                                 </label><br>
                             </div>
                             <div class="title">
@@ -277,7 +292,7 @@
                                 <input type="datetime-local" id="finish" name="finish" placeholder="Finish"
                                
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -286,9 +301,7 @@
                 </button>
             </div>
     </main>
-    <script src="../js/utilities/baseUrl.js"></script>
-    <script src="../js/utilities/uploadToCloudinary.js"></script>
-    <script>
+
 
         const etitle = document.getElementById('etitle');
         const logo = document.getElementById('logo');
@@ -338,11 +351,14 @@
         // this.loading = true;
             // "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
 
+        if(!localStorage.getItem('accesstoken')) {
+      location.assign('../login.html');
+    }
+    </script> -->
 
-    </script>
 </body>
-<script src="../js/utilities/uploadToCloudinary.js"></script>
-<script src="../js/utilities/baseUrl.js"></script>
+<!-- <script src="../js/utilities/uploadToCloudinary.js"></script>
+<script src="../js/utilities/baseUrl.js"></script> -->
 
 
 </html>
