@@ -13,7 +13,16 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+    <link rel="stylesheet" href="https://ccandName: "",
+                    pos: "",
+                    level: "",
+                    manifesto: ""candName: "",
+                    pos: "",candName: "",
+                    pos: "",
+                    level: "",
+                    manifesto: ""
+                    level: "",
+                    manifesto: ""dn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
     <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
 
     <title>Swiftvote</title>
@@ -153,7 +162,10 @@
                                 </li>
                             </ul>
                             <ul>
-                                <li>
+                                <li>candName: "",
+                    pos: "",
+                    level: "",
+                    manifesto: ""
                                     <a href="">Help</a>
                                 </li>
                             </ul>
@@ -186,7 +198,10 @@
                 </div>
                 <div class="line1"></div>
 
-                <div class="page1">
+                <div class="page1">candName: "",
+                    pos: "",
+                    level: "",
+                    manifesto: ""
                     <div class="badge">3</div>
                     <h4>Register voters</h4>
                 </div>
@@ -228,7 +243,7 @@
                                 <label for="esystem">Type of electoral system</label><br>
                                 <select name="esystem" id="esystem">
                                     <option value="disable" disabled>Select...</option>
-                                    <option value="First past the post">Plurality electoral system</option>
+                                    <option value="first-past-the-post">Plurality electoral system</option>
                                 </select>
                             </div>
                         </div>
@@ -240,12 +255,12 @@
                                 <label for="adminId ">Type of election</label><br>
                                 <select name="t_election" id="t_election">
                                     <option value="disable" disabled>Select...</option>
-                                    <option value="General">General</option>
-                                    <option value="General">SUG</option>
-                                    <option value="General">Department</option>
-                                    <option value="General">Faculty</option>
-                                    <option value="General">Association</option>
-                                    <option value="General">Social contest</option>
+                                    <option value="general">General</option>
+                                    <option value="sug">SUG</option>
+                                    <option value="department">Department</option>
+                                    <option value="faculty">Faculty</option>
+                                    <option value="association">Association</option>
+                                    <option value="social-contest">Social contest</option>
                                 </select>
                             </div>
                         </div>
@@ -255,6 +270,7 @@
                                 <label for="adminId ">Duration
                                 <input type="datetime-local" id="start" name="sts" placeholder="start"
                                     x-model="formData.title">
+
                                 </label><br>
                             </div>
                             <div class="title">
@@ -268,25 +284,24 @@
                                 <label for="start ">Duration
                                     <input type="time" id="start" name="sts" placeholder="start"
                                         x-model="formData.title" value="start">
+
                                 </label><br>
                             </div>
                             <div class="title">
-                                <label for="end "></label><br>
-                                <input type="time" id="end" name="duration" placeholder="Finish"
-                                    x-model="formData.title">
+                                <label for="adminId "></label><br>
+                                <input type="datetime-local" id="finish" name="finish" placeholder="Finish"
+                               
                             </div>
                         </div> -->
                     </div>
                 </div>
+
                 <button value="next" id="next" @click="$el.innerHTML = 'submiting'">
                     Next
                 </button>
             </div>
     </main>
 
-    <script src="../js/utilities/baseUrl.js"></script>
-    <script src="../js/utilities/uploadToCloudinary.js"></script>
-    <script>
 
         const etitle = document.getElementById('etitle');
         const logo = document.getElementById('logo');
@@ -336,56 +351,11 @@
         // this.loading = true;
             // "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
 
-
-    </script>
-    <!-- <script>
-        const electionTitle = document.getElementById('etitle');
-        const electionLogo = document.getElementById('logo');
-        const electoralSystem = document.getElementById('esystem');
-        const electionType = document.getElementById('t_election');
-        const durationStart = document.getElementById('start');
-        const durationEnd = document.getElementById('end');
-        const next = document.getElementById('next');
-
-        next.addEventListener('click', async function (e) {
-            e.preventDefault();
-
-            const response = await uploadImage(electionLogo.files[0]);
-
-            let electionDetails = {
-                electionTitle: electionTitle.value,
-                electionLogo: response.secure_url,
-                electionPublicId: response.public_id,
-                electoralSystem: electoralSystem.value,
-                electionType: electionType.value,
-                durationStart: durationStart.value,
-                durationEnd: durationEnd.value
-
-            }
-            localStorage.setItem('electionDetails', JSON.stringify(electionDetails))
-
-            console.log(JSON.stringify(electionDetails))
-
-                let res = await fetch('https://swiftvote-test-api.herokuapp.com/v1/school-election/create-election', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                        accesstoken: localStorage.getItem('accesstoken')
-                    },
-                    body: JSON.stringify(electionDetails)
-                });
-
-                let data = await res.json();
-                console.log(res.json);
-
-                // location.assign('regcand.html')
-
-        })
-
         if(!localStorage.getItem('accesstoken')) {
       location.assign('../login.html');
     }
     </script> -->
+
 </body>
 <!-- <script src="../js/utilities/uploadToCloudinary.js"></script>
 <script src="../js/utilities/baseUrl.js"></script> -->

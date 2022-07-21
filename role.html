@@ -29,7 +29,7 @@
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
     <!-- <script defer src="alpine3.10.2.min.js"></script> -->
-    <script defer src="frontend/scripts/script.js"></script>
+    <!-- <script defer src="frontend/scripts/script.js"></script> -->
     <!-- <script defer src="frontend/scripts/script1.js"></script> -->
     <!-- <script defer src="frontend/scripts/scriptOne.js"></script> -->
     <!-- <script defer src="frontend/scripts/script.js"></script> -->
@@ -51,7 +51,7 @@
     <main>
       <!-- next -->
 
-      <div class="container-fluid">
+      <div class="container-fluid" style="z-index: 100;">
         <div class="right">
           <div class="text">What best describes your current<b> role?</b>.</div>
           <div class="form2">
@@ -135,7 +135,7 @@
                 <a href="signup.html">Back</a>
               </div>
               <div class="btn2">
-                <button id="next_reg" onclick="this.disabled = true;">continue</button>
+                <button id="next_reg">continue</button>
               </div>
             </div>
           </div>
@@ -168,9 +168,9 @@
       next_reg.addEventListener("click", function (e) {
         e.preventDefault();
         // role.val()
-       
+       console.log('Called');
         // localStorage.setItem('role', role.value);
-        location.replace('electiontype.html')
+        location.assign('electiontype.html');
         // localStorage.setItem('email', email.value);
         // localStorage.setItem('phone', phone.value);
         // localStorage.setItem('email', email.value);
