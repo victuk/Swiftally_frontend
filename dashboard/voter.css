@@ -92,13 +92,35 @@ main {
   height: 100%;
 }
 aside {
+  z-index: 4;
   position: fixed;
   display: grid;
   grid-template-columns: 4rem auto;
   height: 100%;
   background: var(--color-sidebar);
   width: 15%;
-  z-index: 3;
+}
+aside .side a.active{
+  background: var(--color-light);
+  color: #003487;
+  margin-left: 0;
+  width: 100%;
+}
+aside .side a {
+  color: var(--color-info-dark);
+}
+aside .side a.active:before {
+  content: "";
+  width: 6px;
+  height: 100%;
+  background: #003487;
+}
+aside .side a:hover {
+  color: var(--color-sidebar-menu);
+}
+
+aside .side a:hover i {
+  margin-left: 1rem;
 }
 .side-menu {
   display: flex;
@@ -508,6 +530,43 @@ td span {
   background: var(--color-sidebar);
   border-radius: var(--border-radius-1);
   width: 100%;
+}
+.chartx .dot{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 2px;
+  background: transparent;
+}
+.chartx .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartx .dot .active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.chart .dot1{
+  display: flex;
+  background-color: var(--color-primary-variant-2);
+  border-radius: 50%;
+  min-height: 2px;
+  min-width: 2px;
+  color: var(--color-primary);
+  padding: 1px 6px;
+  cursor: pointer;
+}
+.chart .dot2{
+  display: flex;
+  background-color: var(--color-primary-variant-2);
+  border-radius: 50%;
+  min-height: 2px;
+  min-width: 2px;
+  color: var(--color-primary);
+  padding: 2px 4px;
+  cursor: pointer;
 }
 #chart0 {
   height: 70%;

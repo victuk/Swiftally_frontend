@@ -336,7 +336,7 @@
             const data = await res.json();
 
             if(res.status == 201) {
-                console.log(data);
+                console.log(data);  
                 localStorage.setItem('electionID', data.electionID);
                 location.assign('regcand.html');
             }
