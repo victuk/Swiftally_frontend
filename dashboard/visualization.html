@@ -208,14 +208,14 @@
                         <div class="text">
                             Shows you candidates who are leading or lagging
                         </div>
-                        <input type="button" value="Select for free">
+                        <button type="button" value="single-column"  @click="$el.innerHTML = 'selected'">Select for free</button>
                     </div>
                     <div class="charts">
                         <div class="chart1"><img src="../images/Stacked column(1).png" alt=""></div>
                         <div class="text">
                             Shows you how categorical votes contribute to candidates overall vote count
                         </div>
-                        <input type="button" value="Select for #400">
+                        <input type="button" value="Select for ₦400">
                     </div>
                     <div class="charts">
                        <div class="chart1">
@@ -225,7 +225,7 @@
                        <div class="text">
                         Shows you candidates vote count in different categories
                     </div>
-                    <input type="button" value="Select for #400">
+                    <input type="button" value="Select for ₦400">
                     </div>
                     <div class="charts">
                         <div class="chart1"><img src="../images/Area frequency(2).png" alt=""></div>
@@ -239,35 +239,35 @@
                         <div class="text">
                             Shows you the frequency and trend of votes over a period
                         </div>
-                        <input type="button" value="Select for #400">
+                        <input type="button" value="Select for ₦400" >
                     </div>
                     <div class="charts">
                         <div class="chart1"><img src="../images/Scatter plot(1).png" alt=""></div>
                         <div class="text">
                             Shows you the frequency and trend of votes over a period
                         </div>
-                        <input type="button" value="Select for #400">
+                        <input type="button" value="Select for ₦400">
                     </div>
                     <div class="charts">
                         <div class="chart1"><img src="../images/Pie chart.png" alt=""></div>
                         <div class="text">
                             Shows you categorical data about the total votes in faculties
                         </div>
-                        <input type="button" value="Select for #400">
+                        <input type="button" value="Select for ₦400">
                     </div>
                     <div class="charts">
                         <div class="chart1"><img src="../images/Doughnut chart.png" alt=""></div>
                         <div class="text">
                             Shows you categorical data about the total votes in departments
                         </div>
-                        <input type="button" value="Select for #400">
+                        <input type="button" value="Select for ₦400">
                     </div>
                     <div class="charts">
                         <div class="chart1"><img src="../images/Doughnut chart radical.png" alt=""></div>
                         <div class="text">
                             Shows you categorical data about the total votes in levels
                         </div>
-                        <input type="button" value="Select for #400">
+                        <input type="button" value="Select for ₦400">
                     </div>
                    
                 </div>
@@ -277,21 +277,22 @@
             </div>
     </main>
     <script>
-        function submitForm() {
+      function handler() {
             return {
                 xtrue: true,
-                formData: {
-                    adminID: "",
-                    password: ""
+                theLists: [],
+                addNewField() {
+                    this.theLists.push({
+                        fullName: "",
+                        email: "",
+                        regNo: "",
+                        faculty: "",
+                        department: "",
+                        level: ""
+                    });
                 },
-                open: "false",
-                status: false,
-                loading: false,
-                isError: false,
-                buttonLabel: "Submit",
-                isEmail(email) {
-                    var re = /\S+@\S+\.\S+/;
-                    return re.test(email);
+                removeField(index) {
+                    this.theLists.splice(index, 1);
                 },
 
                 submitData() {
@@ -303,17 +304,21 @@
                     this.buttonLabel = "Submitting...";
                     this.loading = true;
                     fetch(
-                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
+                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/add/voters",
                         {
-                            method: "POST",
+                            method: "PUT",
                             headers: {
                                 "Content-Type": "application/json",
+                                accesstoken: localStorage.getItem('accesstoken'),
+                                electionID: localStorage.getItem('electionID')
+
+
                             },
-                            body: JSON.stringify(this.formData),
+                            body: JSON.stringify(this.theLists),
                         }
                     )
                         .then((response) => {
-                            if (response == status) {
+                            if (response.status == 201) {
                                 // location.replace('dashboard.html');
                                 console.log(response)
                                 this.status = true;
@@ -331,8 +336,9 @@
                 },
 
 
-            };
+            }
         }
+
     </script>
 </body>
 

@@ -252,6 +252,19 @@
 
                         <div class="electiontype">
                             <div class="title">
+                                <label for="adminId ">Duration
+                                <input type="datetime-local" id="start" name="sts" placeholder="start"
+                                    x-model="formData.title">
+                                </label><br>
+                            </div>
+                            <div class="title">
+                                <label for="adminId "></label><br>
+                                <input type="datetime-local" id="finish" name="finish" placeholder="Finish"/>
+                               
+                            </div>
+                        </div>
+                        <!-- <div class="electiontype">
+                            <div class="title">
                                 <label for="start ">Duration
                                     <input type="time" id="start" name="sts" placeholder="start"
                                         x-model="formData.title" value="start">
@@ -262,7 +275,7 @@
                                 <input type="time" id="end" name="duration" placeholder="Finish"
                                     x-model="formData.title">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <button value="next" id="next" @click="$el.innerHTML = 'submiting'">
@@ -270,7 +283,62 @@
                 </button>
             </div>
     </main>
+
+    <script src="../js/utilities/baseUrl.js"></script>
+    <script src="../js/utilities/uploadToCloudinary.js"></script>
     <script>
+
+        const etitle = document.getElementById('etitle');
+        const logo = document.getElementById('logo');
+        const esystem = document.getElementById('esystem');
+        const t_election = document.getElementById('t_election');
+        const electionStart = document.getElementById('start');
+        const electionFinish = document.getElementById('finish');
+        const nextProcedure = document.getElementById('next');
+
+        
+
+        nextProcedure.addEventListener('click', async function() {
+            const response = await uploadImage(logo.files[0]);
+
+            const res = await fetch(baseUrl + 'school-election/create-election', {
+                method: 'POST',
+                headers: {
+                    accesstoken: localStorage.getItem('accesstoken'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    electionTitle: etitle.value,
+                    electionLogo: response.secure_url,
+                    electionLogoPublicId: response.public_id,
+                    electoralSystem: esystem.value,
+                    electionType: t_election.value,
+                    durationStart: electionStart.value,
+                    durationEnd: electionFinish.value
+                })
+            });
+
+            const data = await res.json();
+
+            if(res.status == 201) {
+                console.log(data);
+                localStorage.setItem('electionID', data.electionID);
+                location.assign('regcand.html');
+            }
+
+            
+        });
+
+
+        
+
+        // this.buttonLabel = "Submitting...";
+        // this.loading = true;
+            // "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
+
+
+    </script>
+    <!-- <script>
         const electionTitle = document.getElementById('etitle');
         const electionLogo = document.getElementById('logo');
         const electoralSystem = document.getElementById('esystem');
@@ -317,10 +385,10 @@
         if(!localStorage.getItem('accesstoken')) {
       location.assign('../login.html');
     }
-    </script>
+    </script> -->
 </body>
-<script src="../js/utilities/uploadToCloudinary.js"></script>
-<script src="../js/utilities/baseUrl.js"></script>
+<!-- <script src="../js/utilities/uploadToCloudinary.js"></script>
+<script src="../js/utilities/baseUrl.js"></script> -->
 
 
 </html>

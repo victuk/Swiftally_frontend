@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <!-- <link rel="stylesheet" href="style.css"/> -->
-  <link rel="stylesheet" href="dashboard2.css" />
+  <!-- <link rel="stylesheet" href="dashboard2.css" /> -->
   <link rel="stylesheet" href="tool.css" />
   <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -286,223 +286,16 @@
         </div>
       </nav><br>
       <div class="position">
-        <div class="election-position">
-          <input type="button" value="Position 1" />
-          <input type="button" value="Position 2" />
-          <input type="button" value="Position 3" />
-          <input type="button" value="Position 5" />
-          <input type="button" value="Position 5" />
-          <input type="button" value="Position 6" />
+        <div class="tab">
+          <div class="data-display"><i class="fa-solid fa-display-code"></i></div>
+          <div class="data-display"><i class="fa-solid fa-watch"></i></div>
+          <div class="data-display">a</div>
 
-          <div class="" x-data="dropdown()">
-            <div class="filter" @click="toggle()" @keydown.escape="isOpen = false">
-              <i class="fa-solid fa-bars-filter"></i>
-              <input type="button" value="filter" />
-            </div>
-
-            <div class="dropdown-4" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
-              x-transition:leave.delay.20ms>
-              <div class="accountx">
-                <div class="middle">Keyword</div>
-                <div class="close" @click="toggle()">
-                  <i class="fa-light fa-xmark"></i>
-                </div>
-              </div>
-              <div class="search-2">
-                <input type="search" name="Search" id="search" placeholder="Enter Keyword" />
-              </div>
-              <small> select positions you will like to see</small>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 1</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 2</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 3</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 4</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 5</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 6</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 7</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 8</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 9</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 10</label>
-              </div>
-              <div class="btn-filter">
-                <button>Done</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="" x-data="dropdown()">
-            <div class="filter" @click="toggle()" @keydown.excape="isOpen = false">
-              <input type="button" value="Show menu" />
-            </div>
-            <div class="dropdown-5" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
-              x-transition:leave.delay.20ms>
-              <div class="accounty">
-                <div class="middle">See candidate list</div>
-              </div>
-              <div class="hr"></div>
-              <div class="accounty">
-                <div class="middle">See voter list</div>
-              </div>
-              <div class="hr"></div>
-
-              <p><b>All positions</b></p>
-              <div class="search-2">
-                <input type="search" name="Search" id="search" placeholder="Enter Keyword" />
-              </div>
-              <p>search for available positions</p>
-
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 1</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 2</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 3</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 4</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 5</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 6</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 7</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 8</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 9</label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="" id="" />
-                <label for="checkbox">Position 10</label>
-              </div>
-              <div class="btn-filter">
-                <button>Done</button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div class="center">
-        <div class="text">
-            Set multiple data visualization.<b>Select data display.</b>
-        </div>
-        <div class="visual">
-            <div class="charts">
-                <div class="chart1"><img src="../images/Single column(1).png" alt=""></div>
-                <div class="text">
-                    Shows you candidates who are leading or lagging
-                </div>
-                <input type="button" value="Select for free">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Stacked column(1).png" alt=""></div>
-                <div class="text">
-                    Shows you how categorical votes contribute to candidates overall vote count
-                </div>
-                <input type="button" value="Select for #400">
-            </div>
-            <div class="charts">
-               <div class="chart1">
-                <img src="../images/Multiple columns(1).png" alt="">
-                
-               </div>
-               <div class="text">
-                Shows you candidates vote count in different categories
-            </div>
-            <input type="button" value="Select for #400">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Area frequency(2).png" alt=""></div>
-                <div class="text">
-                    Shows you the frequency and trend of votes over a period
-                </div>
-                <input type="button" value="Select for free">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Line frequency(1).png" alt=""></div>
-                <div class="text">
-                    Shows you the frequency and trend of votes over a period
-                </div>
-                <input type="button" value="Select for #400">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Scatter plot(1).png" alt=""></div>
-                <div class="text">
-                    Shows you the frequency and trend of votes over a period
-                </div>
-                <input type="button" value="Select for #400">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Pie chart.png" alt=""></div>
-                <div class="text">
-                    Shows you categorical data about the total votes in faculties
-                </div>
-                <input type="button" value="Select for #400">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Doughnut chart.png" alt=""></div>
-                <div class="text">
-                    Shows you categorical data about the total votes in departments
-                </div>
-                <input type="button" value="Select for #400">
-            </div>
-            <div class="charts">
-                <div class="chart1"><img src="../images/Doughnut chart radical.png" alt=""></div>
-                <div class="text">
-                    Shows you categorical data about the total votes in levels
-                </div>
-                <input type="button" value="Select for #400">
-            </div>
-           
-        </div>
-        <button value="Continue"  id="next">
-            Continue
-        </button>
-    </div>
+
+      </div>
     </div>
   </main>
 
