@@ -240,14 +240,14 @@
                                             <td>
                                                 <div class="in1">
                                                     <input x-model="field.txt1" type="text" name="txt1[]"
-                                                        class="form-control">
+                                                        class="form-control typing-field">
                                                 </div>
 
                                             </td>
                                             <td>
                                                 <div class="in2">
                                                     <label for="img" id="label">
-                                                        <input type="file" id="img">
+                                                        <input type="file" class="typing-field" id="img">
                                                     </label>
                                                 </div>
 
@@ -256,7 +256,7 @@
                                             <td>
                                                 <div class="in2">
                                                     <input x-model="field.txt2" type="text" name="txt3[]"
-                                                        class="form-control">
+                                                        class="form-control typing-field">
                                                 </div>
 
                                             </td>
@@ -264,7 +264,7 @@
                                             <td>
                                                 <div class="in1">
                                                     <input x-model="field.txt2" type="text" name="txt4[]"
-                                                        class="form-control">
+                                                        class="form-control typing-field">
                                                 </div>
 
                                             </td>
@@ -272,7 +272,7 @@
                                             <td>
                                                 <div class="in2">
                                                     <textarea x-model="field.txt2" type="text" name="txt5[]"
-                                                        class="form-control"></textarea>
+                                                        class="form-control typing-field"></textarea>
                                                 </div>
 
                                             </td>
@@ -290,7 +290,19 @@
 
             </div>
     </main>
+    <script src="../js/utilities/baseUrl.js"></script>
     <script>
+
+        const doneButton = document.getElementById('done');
+
+        const typingField = document.getElementsByClassName('typing-field');
+
+        
+
+        doneButton.addEventListener('click', function() {
+            console.log(typingField);
+        });
+
         function submitForm() {
             return {
                 xtrue: true,
@@ -317,7 +329,7 @@
                     this.buttonLabel = "Submitting...";
                     this.loading = true;
                     fetch(
-                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
+                        baseUrl + "school-election/admin/login",
                         {
                             method: "POST",
                             headers: {
@@ -343,18 +355,17 @@
                             this.buttonLabel = "Submit";
                         });
                 },
-
-
             };
         }
         function handler() {
             return {
-                fields: [1],
+                fields: 1,
                 addNewField() {
-                    this.fields.push({
-                        txt1: '',
-                        txt2: ''
-                    });
+                    this.fields += 1;
+                    // this.fields.push({
+                    //     txt1: '',
+                    //     txt2: ''
+                    // });
                 },
                 removeField(index) {
                     this.fields.splice(index, 1);
