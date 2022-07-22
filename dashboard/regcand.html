@@ -246,7 +246,7 @@
                                             <td>
                                                 <div class="in2">
                                                     <label for="img" id="label">
-                                                        <input type="file" x-model="theList.pic" class="typing-field picture" id="img">
+                                                        <input type="file" class="typing-field pic" id="img">
                                                     </label>
                                                 </div>
 
@@ -292,7 +292,7 @@
     <script>
         const sectionDiv = document.getElementsByClassName('wholeSection');
         const fullName = document.getElementsByClassName('fullName');
-        const picture = document.getElementsByClassName('picture');
+        let picture = document.getElementsByClassName('pic');
         const position = document.getElementsByClassName('position');
         const lev = document.getElementsByClassName('lev');
         const man = document.getElementsByClassName('man');
@@ -324,13 +324,13 @@
                 theLists: [],
                 listCount: 1,
                 addNewField() {
-                    this.theLists.push({
-                        fullName: "",
-                        position: "",
-                        pic: "",
-                        level: "",
-                        manifesto: ""
-                    });
+                    // this.theLists.push({
+                    //     fullName: "",
+                    //     position: "",
+                    //     pic: "",
+                    //     level: "",
+                    //     manifesto: ""
+                    // });
                     this.listCount += 1;
                     // console.log(this.theLists);
                 },
@@ -403,7 +403,7 @@
             let candDetails = [];
             for(let i = 0; i < sectionDiv.length; i++) {
                 const fullN = fullName[i].value;
-                const pict = picture[i].files[0];
+                let pict = picture[i].files[0];
                 const posi = position[i].value;
                 const level = lev[i].value;
                 const manifesto = man[i].value;
