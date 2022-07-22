@@ -333,6 +333,19 @@ main {
   margin-top: 4rem;
   justify-content: center;
 }
+.charts button{
+  display: flex;
+  width: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 6px 16px;
+  margin: 8px 0;
+  border: none;
+  border-radius: var(--border-radius-1);
+  cursor: pointer;
+  justify-content: center;
+
+}
 
 @media screen and (max-width: 1000px) {
   .container {

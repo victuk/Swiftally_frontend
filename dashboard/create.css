@@ -351,7 +351,8 @@ select {
   flex: 3;
 }
 input[type="text"],
-input[type="password"] {
+input[type="password"]
+ {
   width: 100%;
   padding: 5px 16px;
   margin-top: 5px;
@@ -362,6 +363,22 @@ input[type="password"] {
   box-sizing: border-box;
   background: var(--color-input);
 }
+input[type=time]{
+  width: 100%;
+  padding: 5px 16px;
+  margin-top: 5px;
+  margin-bottom: 2rem;
+  display: block;
+  border: 1px solid var(--color-stroke);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  background: var(--color-input);
+  
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
 .electiontitle #label {
   margin-top: 5px;
   flex: 0.5 1;

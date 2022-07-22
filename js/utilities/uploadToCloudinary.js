@@ -1,5 +1,5 @@
-const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/dae4sosbl/image/upload';
-const cloudinaryPreset = 'g94jlyni';
+const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/swiftally-limited/image/upload';
+const cloudinaryPreset = 'swiftally';
 
 const uploadImage = async (file) => {
     let formData = new FormData();

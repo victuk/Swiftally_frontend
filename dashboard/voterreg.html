@@ -205,7 +205,7 @@
             <div class="center" x-data="handler()">
                 <div class="nav">
                     <div class="candlist">
-                        <div class="badge" x-text="index + 1">7</div>
+                        <div class="badge" x-text="index"></div>
                         <div class="list"><b> Candidate list</b></div>
                     </div>
                     <div class="extra">
@@ -214,7 +214,7 @@
                             <input type="file" id="logo">
                         </label>
                         <input type="button" @click="addNewField()" id="addRow" value=" + Add row">
-                        <input type="button" value="Done" id="done">
+                        <input type="button" value="Done" id="done" @click="submitData()">
                     </div>
                 </div>
 
@@ -241,18 +241,18 @@
                                      </tr>
                                 </thead>  
                                 <tbody>
-                                    <template x-for="(field, index) in fields" :key="index">
+                                    <template x-for="(theList, index) in theLists" :key="index">
                                         <tr>
                                             <td>
                                                 <div class="in1">
-                                                    <input x-model="field.txt1" type="text" name="txt1[]"
+                                                    <input x-model="theList.fullName" type="text" name="txt1[]"
                                                         class="form-control">
                                                 </div>
 
                                             </td>
                                             <td>
                                                 <div class="in2">
-                                                    <input x-model="field.txt1" type="text" name="txt1[]"
+                                                    <input x-model="theList.email" type="text" name="txt1[]"
                                                         class="form-control">
                                                 </div>
 
@@ -260,7 +260,7 @@
 
                                             <td>
                                                 <div class="in1">
-                                                    <input x-model="field.txt2" type="text" name="txt3[]"
+                                                    <input x-model="theList.regNo" type="text" name="txt3[]"
                                                         class="form-control">
                                                 </div>
 
@@ -268,7 +268,7 @@
 
                                             <td>
                                                 <div class="in2">
-                                                    <input x-model="field.txt2" type="text" name="txt4[]"
+                                                    <input x-model="theList.faculty" type="text" name="txt4[]"
                                                         class="form-control">
                                                 </div>
 
@@ -276,7 +276,7 @@
 
                                             <td>
                                                 <div class="in1">
-                                                    <input x-model="field.txt2" type="text" name="txt4[]"
+                                                    <input x-model="theList.department" type="text" name="txt4[]"
                                                         class="form-control">
                                                 </div>
 
@@ -284,7 +284,7 @@
 
                                             <td>
                                                 <div class="in2">
-                                                    <input x-model="field.txt2" type="text" name="txt4[]"
+                                                    <input x-model="theList.level" type="text" name="txt4[]"
                                                         class="form-control">
                                                 </div>
 
@@ -306,21 +306,23 @@
             </div>
     </main>
     <script>
-        function submitForm() {
+      
+        function handler() {
             return {
                 xtrue: true,
-                formData: {
-                    adminID: "",
-                    password: ""
+                theLists: [],
+                addNewField() {
+                    this.theLists.push({
+                        fullName: "",
+                        email: "",
+                        regNo: "",
+                        faculty: "",
+                        department: "",
+                        level: ""
+                    });
                 },
-                open: "false",
-                status: false,
-                loading: false,
-                isError: false,
-                buttonLabel: "Submit",
-                isEmail(email) {
-                    var re = /\S+@\S+\.\S+/;
-                    return re.test(email);
+                removeField(index) {
+                    this.theLists.splice(index, 1);
                 },
 
                 submitData() {
@@ -332,17 +334,20 @@
                     this.buttonLabel = "Submitting...";
                     this.loading = true;
                     fetch(
-                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/admin/login",
+                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/add/voters",
                         {
-                            method: "POST",
+                            method: "PUT",
                             headers: {
                                 "Content-Type": "application/json",
+                                accesstoken: localStorage.getItem('accesstoken')
                             },
-                            body: JSON.stringify(this.formData),
+                            body: JSON.stringify({
+                                electionID: localStorage.getItem('electionID'),
+                                theList: this.theLists}),
                         }
                     )
                         .then((response) => {
-                            if (response == status) {
+                            if (response.status == 201) {
                                 // location.replace('dashboard.html');
                                 console.log(response)
                                 this.status = true;
@@ -360,36 +365,9 @@
                 },
 
 
-            };
-        }
-        function handler() {
-            return {
-                fields: [1],
-                addNewField() {
-                    this.fields.push({
-                        txt1: '',
-                        txt2: ''
-                    });
-                },
-                removeField(index) {
-                    this.fields.splice(index, 1);
-                }
             }
         }
 
-        // $(document).ready(function () {
-        //     var t = $('#example').DataTable();
-        //     var input = 1;
-
-        //     $('#addRow').on('click', function () {
-        //         t.row.add([input]).draw(true);
-
-        //         input++;
-        //     });
-
-        //     // Automatically add a first row of data
-        //     $('#addRow').click();
-        // });
     </script>
 </body>
 

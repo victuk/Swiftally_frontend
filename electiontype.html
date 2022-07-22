@@ -23,6 +23,12 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
 
   <title>Swiftvote</title>
+  <style>
+
+    .blue {
+      background-color: #003478;
+    }
+  </style>
 </head>
 
 <body>
@@ -41,9 +47,9 @@
           </div>
           <div class="form2">
             <form action="">
-              <div class="">
-                <input type="button" value="general" onclick="myFunction(this)">
-                <input type="button" value="faculty" onclick="myFunction(this)">
+              <div class="" x-data="clicked: false">
+                <input type="button" value="general" onclick="myFunction(this)" :style="input ? 'bg-red'">
+                <input type="button" value="faculty" onclick="myFunction(this)" :class="clicked ? 'bg-blue' : ''" @click="clicked= true" class="blue">
                 <input type="button" value="department" onclick="myFunction(this)">
                 <input type="button" value="hostel" onclick="myFunction(this)">
                 <input type="button" value="staff" onclick="myFunction(this)">
@@ -63,7 +69,7 @@
                 </button> </a>
               </div>
               <div class="btn2">
-                <button id="next" onclick="this.disabled = true;">continue</button>
+                <button id="next" onclick="this.disabled = true;" @click="$el.innerHTML = 'submiting'">continue</button>
               </div>
             </div>
           </div>
@@ -97,28 +103,35 @@
         // role.val()
        
         // localStorage.setItem('role', role.value);
-        location.replace('email.html')
+        location.assign('email.html')
       // location.replace('/indexthree.html?email=' + email.value + '&name=victor');
     });
 
-    $(document).ready(function () {
-        $('input').click(
-          function () {
-          $(this).css({
-            "background-color": "#003478",
-            color: "#ffffff"
-          });
-        },
+    function submitForm(){ 
+      return{
+        clicked: 'false',
 
-        function () {
-          $(this).css({
-            "background-color": "#003478",
-            color: "#fff",
-          });
-        },
+      }
+    }
+
+    // $(document).ready(function () {
+    //     $('input').click(
+    //       function () {
+    //       $(this).css({
+    //         "background-color": "#003478",
+    //         color: "#ffffff"
+    //       });
+    //     },
+
+    //     function () {
+    //       $(this).css({
+    //         "background-color": "#003478",
+    //         color: "#fff",
+    //       });
+    //     },
         
-        );
-      });
+    //     );
+    //   });
 //     const options = {
 // 	method: 'GET',
 // 	headers: {
