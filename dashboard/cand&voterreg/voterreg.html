@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="voterreg.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+    <script defer src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
+    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+
+    <title>Swiftvote</title>
+</head>
+
+<body x-data>
+
+    <header>
+        <div class="logo">
+            <img src="image/Swiftvote Logo.png" alt="" />
+        </div>
+        <div class="search">
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="search" name="Search" id="search" placeholder="Search" />
+        </div>
+
+        <div class="extra-info">
+            <div class="box-1" x-data="dropdown()">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+
+            <div class="" x-data="dropdown()">
+                <div class="box-2" @click="toggle()">
+                    <i class="fa-solid fa-info"></i>
+                </div>
+                <!-- info dropdown -->
+                <div class="dropdown-3" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                    x-transition:leave.delay.20ms>
+                    <div class="account">
+                        <div class="empty"></div>
+                        <div class="middle">Information page</div>
+                        <div class="close" @click="toggle()">
+                            <i class="fa-light fa-xmark"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="conten" id="info">
+                        <div class="info">
+                            <p>
+                                <b>
+                                    Note that once the election starts, you will not be able
+                                    to register voters and candidates again</b>
+                            </p>
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="profil">
+                            <i class="fa-light fa-arrow-left"></i>
+                            <i class="fa-light fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- info dropdown ends-->
+            </div>
+
+            <div class="" x-data="dropdown()">
+                <div class="box-3" @click="toggle()" @keydown.escape="isOpen = false">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+
+                <!-- Notification dropdown -->
+                <div class="dropdown-2" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                    x-transition:leave.delay.20ms>
+                    <div class="account">
+                        <div class="empty"></div>
+                        <div class="middle">Notifications</div>
+                        <div class="close" @click="toggle()">
+                            <i class="fa-light fa-xmark"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="content" id="content">
+                        <div class="img">
+                            <img src="images/telescope/amico.png" alt="" />
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="profile">
+                            <div class="text">
+                                <p><b>You've got no notification</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- notification dropdown ends -->
+            </div>
+
+            <div class="" x-data="dropdown()">
+                <div class="box" @click="toggle()" @keydown.escape="isOpen = false">
+                    <span>UJ</span>
+                </div>
+
+                <!-- modal for profile -->
+
+                <div class="dropdown-1" x-cloak x-show="isOpen" @click.away="isOpen = false" x-transition:enter.10ms
+                    x-transition:leave.delay.20ms>
+                    <div class="account">
+                        <div class="empty"></div>
+                        <div class="middle">Account</div>
+                        <div class="close" @click="toggle()">
+                            <i class="fa-light fa-xmark"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="content">
+                        <div class="profile">
+                            <div class="box">
+                                <span>UJ</span>
+                            </div>
+
+                            <div class="text">
+                                <p>Uncle Jerry</p>
+                                <small>Unclejerry@gmail.com</small>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <input type="button" value="Admin ID: @unclejerry.2345" id="id-input" />
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="details">
+                            <ul>
+                                <li>
+                                    <a href="">Account Preference</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">Payment method</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">Settings</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">Help</a>
+                                </li>
+                            </ul>
+                            <hr />
+                            <ul>
+                                <li>
+                                    <a href=""><i class="fa-light fa-arrow-right-from-bracket"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal for profile ends -->
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container" x-data="submitForm()">
+            <div class="pagination">
+                <div class="page">
+                    <div class="badge">1</div>
+                    <h4>Election details</h4>
+                </div>
+                <div class="line"></div>
+                <div class="page">
+                    <div class="badge">2</div>
+                    <h4>Register candidates</h4>
+                </div>
+                <div class="line"></div>
+
+                <div class="page">
+                    <div class="badge">3</div>
+                    <h4>Register voters</h4>
+                </div>
+                <div class="line1"></div>
+
+                <div class="page1">
+                    <div class="badge">4</div>
+                    <h4>Data display</h4>
+                </div>
+                <div class="line1"></div>
+
+                <div class="page1">
+                    <div class="badge">5</div>
+                    <h4>Pay & Host</h4>
+                </div>
+            </div>
+            <div class="center" x-data="handler()">
+                <div class="nav">
+                    <div class="candlist">
+                        <div class="badge" x-text="index"></div>
+                        <div class="list"><b> Candidate list</b></div>
+                    </div>
+                    <div class="extra">
+                        <label for="logo" id="label"> Upload spreadsheet
+
+                            <input type="file" id="logo">
+                        </label>
+                        <input type="button" @click="addNewField()" id="addRow" value=" + Add row">
+                        <input type="button" value="Done" id="done" @click="submitData()">
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-bordered align-items-center table-sm">
+                                <!-- <div class="thead">
+                                    <div class="">Voter's full name</div>
+                                    <div class="">Email</div>
+                                    <div class="">Registration no.</div>
+                                    <div class="">Faculty</div>
+                                    <div class="">Department</div>
+                                    <div class="">Level</div>
+                                </div> -->
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Voter's full name</th>
+                                        <th>Email</th>
+                                        <th>Registration no.</th>
+                                        <th>Faculty</th>
+                                        <th>Department</th>
+                                        <th>Level</th>
+                                     </tr>
+                                </thead>  
+                                <tbody>
+                                    <template x-for="(theList, index) in theLists" :key="index">
+                                        <tr>
+                                            <td>
+                                                <div class="in1">
+                                                    <input x-model="theList.fullName" type="text" name="txt1[]"
+                                                        class="form-control">
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div class="in2">
+                                                    <input x-model="theList.email" type="text" name="txt1[]"
+                                                        class="form-control">
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+                                                <div class="in1">
+                                                    <input x-model="theList.regNo" type="text" name="txt3[]"
+                                                        class="form-control">
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+                                                <div class="in2">
+                                                    <input x-model="theList.faculty" type="text" name="txt4[]"
+                                                        class="form-control">
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+                                                <div class="in1">
+                                                    <input x-model="theList.department" type="text" name="txt4[]"
+                                                        class="form-control">
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+                                                <div class="in2">
+                                                    <input x-model="theList.level" type="text" name="txt4[]"
+                                                        class="form-control">
+                                                </div>
+
+                                            </td>
+
+                                            
+                                        </tr>
+                                    </template>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+    </main>
+    <script>
+      
+        function handler() {
+            return {
+                xtrue: true,
+                theLists: [],
+                addNewField() {
+                    this.theLists.push({
+                        fullName: "",
+                        email: "",
+                        regNo: "",
+                        faculty: "",
+                        department: "",
+                        level: ""
+                    });
+                },
+                removeField(index) {
+                    this.theLists.splice(index, 1);
+                },
+
+                submitData() {
+                    // if (!this.formData.email.length) {
+                    //   alert("Please put in the right email!");
+                    //   return;
+                    // }
+
+                    this.buttonLabel = "Submitting...";
+                    this.loading = true;
+                    fetch(
+                        "https://swiftvote-test-api.herokuapp.com/v1/school-election/add/voters",
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                                accesstoken: localStorage.getItem('accesstoken'),
+                                electionID: localStorage.getItem('electionID')
+
+
+                            },
+                            body: JSON.stringify(this.theLists),
+                        }
+                    )
+                        .then((response) => {
+                            if (response.status == 201) {
+                                // location.replace('dashboard.html');
+                                console.log(response)
+                                this.status = true;
+                            } else {
+                                throw new Error("Your login failed");
+                            }
+                        })
+                        .then((json) => console.log(json))
+                        .catch((error) => console.log(error))
+
+                        .finally(() => {
+                            this.loading = false;
+                            this.buttonLabel = "Submit";
+                        });
+                },
+
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -9,13 +9,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <!-- <link rel="stylesheet" href="style.css"/> -->
   <!-- <link rel="stylesheet" href="dashboard2.css" /> -->
-  <link rel="stylesheet" href="tool.css" />
+  <link rel="stylesheet" href="tool.css"/>
+  <link rel="stylesheet" href="media.css"/>
+  
   <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
   <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
-  <script defer src="alpine3.10.2.min.js"></script>
+  <script defer src="../alpine3.10.2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.css"></script>
 
   <title>Swiftvote</title>
@@ -93,10 +95,11 @@
           </ul>
           <hr />
           <ul>
-            <li>
-              <a href="tool.html">
+            <li >
+              <a href="tool.html" class="active">
                 <i class="fa-solid fa-toolbox"></i>
                 <h3>Tool</h3>
+                
               </a>
             </li>
             <li>
@@ -285,16 +288,163 @@
           </div>
         </div>
       </nav><br>
-      <div class="position">
-        <div class="tab">
-          <div class="data-display"><i class="fa-solid fa-display-code"></i></div>
-          <div class="data-display"><i class="fa-solid fa-watch"></i></div>
-          <div class="data-display">a</div>
+      
+      <div class="center" x-data="tab()">
+        <!-- data display -->
+        
+        <template x-if="reg==1">
+          
+          <div class="wrapper">
+            <div class="tab">
+              <div class="">
+                <div class="data-display active"  id="active" @click="display()"><i class="fa-solid fa-display"></i></div>
+                <h5>Data display</h5>
+              </div>
+              <div class="">
+                <div class="extend-time" @click="time()"><i class="fa-solid fa-clock"></i></div>
+                <h5>Extend time</h5>
+              </div>
+              <div class="">
+                <div class="extend-time" @click="poll()"><i class="fa-solid fa-bars"></i></div>
+                <h5>Poll access</h5>
+              </div>
+              
+    
+            </div>
+            <div class="charts">
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Single column(1).png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Stacked column(1).png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Multiple columns(1).png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Area frequency(2).png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Line frequency(1).png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Scatter plot(1).png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Pie chart.png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img class="dou3" src="../images/Doughnut chart.png" alt=""></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+    
+              <div class="chart">
+                <div class="title">Single column</div>
+                <div class="img"><img src="../images/Doughnut chart radical.png" alt="" class="dou3"></div>
+                <div class="select"><button>Select for free</button></div>
+              </div>
+            </div>
+            <button id="order">ORDER NOW</button>
+          </div>
+        </template>
 
-        </div>
-      </div>
-      <div class="center">
+        <!-- End of data -->
 
+        <!-- Extend time start -->
+        <template x-if="reg==2">
+          
+         
+          <div class="wrapper2">
+            <div class="tab">
+              <div class="">
+                <div class="data-display active"  @click="display()"><i class="fa-solid fa-display"></i></div>
+                <h5>Data display</h5>
+              </div>
+              <div class="">
+                <div class="extend-time" id="active" @click="time()"><i class="fa-solid fa-clock"></i></div>
+                <h5>Extend time</h5>
+              </div>
+              <div class="">
+                <div class="extend-time" @click="poll()"><i class="fa-solid fa-bars"></i></div>
+                <h5>Poll access</h5>
+              </div>
+              
+    
+            </div>
+            <div class="time">
+              <h5>Initial time</h5>
+              <div class="input">
+                <input type="time" class="border">
+                <input type="time">
+                <input type="time" class="border2">
+              </div>
+
+              <h5>Initial time</h5>
+              <div class="input">
+                <input type="text" class="border">
+                <input type="text">
+                <input type="text" class="border2">
+              </div>
+              <p>Note that you will be charged ones you extend the election duration. <a href="#">learn more...</a></p>
+              <button>Save</button>
+            </div>
+          </div>
+        </template> 
+        <!-- Extend time Ends -->
+
+        <!-- poll access starts -->
+        <template x-if="reg==3">
+          
+         
+          <div class="wrapper2">
+            <div class="tab">
+              <div class="">
+                <div class="data-display active"  @click="display()"><i class="fa-solid fa-display"></i></div>
+                <h5>Data display</h5>
+              </div>
+              <div class="">
+                <div class="extend-time"  @click="time()"><i class="fa-solid fa-clock"></i></div>
+                <h5>Extend time</h5>
+              </div>
+              <div class="">
+                <div class="extend-time" @click="poll()"  id="active"><i class="fa-solid fa-bars"></i></div>
+                <h5>Poll access</h5>
+              </div>
+              
+    
+            </div>
+            <div class="time2">
+              <div class="input">
+                <input type="button" class="border" value="Access on" id="active">
+                <input type="button" class="border2" value="Access off">
+              </div> 
+              <p>By turning poll off, voters and candidates won't see the real-time result of the election</p>
+            </div>
+          </div>
+        </template> 
+        <!-- poll access ends -->
       </div>
     </div>
   </main>
@@ -346,8 +496,28 @@
           if (this.chart < 1) {
             this.chart = this.n_chart;
           }
-        }
+        },
 
+       
+      }
+    }
+
+    function tab(){
+      return{
+        reg: 1,
+
+        display() {
+         this.reg = 1;
+          
+        },
+
+        time() {
+         this.reg = 2;
+        },
+
+        poll() {
+         this.reg = 3;
+        },
       }
     }
   </script>
