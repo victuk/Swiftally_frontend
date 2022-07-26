@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
   <!-- <link rel="stylesheet" href="style.css"/> -->
   <link rel="stylesheet" href="dashboard2.css" />
   <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.min.js"></script> -->
@@ -66,7 +70,7 @@
         <div class="sidebar-items">
           <ul>
             <li>
-              <a href="dashboard.html">
+              <a href="dashboard.html" class="active">
                 <i class="fas fa-th-large"></i>
                 <h3>Dashboard</h3>
               </a>
@@ -425,7 +429,7 @@
           </div>
         </div>
       </div>
-      <div class="center">
+      <div class="center" x-data="dashboardData()">
         <div class="col1">
           <div class="row1">
             <div class="insights">
@@ -453,60 +457,25 @@
                 <span class="text-muted">countdown</span>
               </div>
             </div>
-            <div class="chart" x-data="dashboardData()">
+            <div class="chart">
               <div class="chartx" x-show="chart==1">
+                <h2 style="margin: 2rem;">Candidates Data</h2>
+
+                <div id="chart1"></div>
+              </div>
+              <div class="chartx" x-show="chart==2">
                 <h2 style="margin: 2rem;">Candidates Data</h2>
 
                 <div id="chart0"></div>
               </div>
+              <div class="chartx" x-show="chart==3">
+                <h2 style="margin: 2rem;">Candidates Data</h2>
+                <div id="chart3"></div>
 
-              <!-- <div class="chart" x-show = "chart==2">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
 
-                    <div id="chart2"></div>
-                </div>
-            
-                <div class="chart" x-show = "chart==3">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
+              </div>
 
-                    <div id="chart"></div>
-                </div>
-             
-                <div class="chart" x-show = "chart==4">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
 
-                    <div id="charts"></div>
-                </div>
-
-                <div class="chart" x-show = "chart==5">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
-
-                    <div id="chart5"></div>
-                </div>
-             
-                <div class="chart" x-show = "chart==6">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
-
-                    <div id="chart6"></div>
-                </div>
-             
-                <div class="chart" x-show = "chart==7">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
-
-                    <div id="chart7"></div>
-                </div>
-        
-                <div class="chart" x-show = "chart==8">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
-
-                    <div id="chart8"></div>
-                </div>
-           
-                <div class="chart" x-show = "chart==9">
-                    <h2 style="margin: 2rem;">Candidates Data</h2>
-
-                    <div id="charti"></div>
-                </div> -->
               <div class="btn">
                 <div class="btn1">
                   <button type="button" @click="prev_reg()"><i class="fa-solid fa-chevron-left"></i></button>
@@ -523,23 +492,22 @@
 
               <div class="updates">
                 <div class="menu">
-                <h2>Top Candidates</h2>
+                  <h2>Top Candidates</h2>
                   <i class="fas fa-bars"></i>
                 </div>
 
-                
+
                 <div class="update">
                   <div class="candidate">
 
                     <div class="profile-photo">
-                      <img src="../images/jerry2.jpg" 
-                        alt="">
+                      <img src="../images/jerry2.jpg" alt="">
                     </div>
                     <div class="profile-name">
                       <p><b>Favour Jennifer</b></p>
                       <small class="text-muted">9% vote</small>
                     </div>
-                   
+
 
                   </div>
                   <div class="progress">
@@ -551,14 +519,13 @@
                   <div class="candidate">
 
                     <div class="profile-photo">
-                      <img src="../images/jerry2.jpg" 
-                        alt="">
+                      <img src="../images/jerry2.jpg" alt="">
                     </div>
                     <div class="profile-name">
                       <p><b>Favour Jennifer</b></p>
                       <small class="text-muted">9% vote</small>
                     </div>
-                   
+
 
                   </div>
                   <div class="progress">
@@ -570,14 +537,13 @@
                   <div class="candidate">
 
                     <div class="profile-photo">
-                      <img src="../images/jerry2.jpg" 
-                        alt="">
+                      <img src="../images/jerry2.jpg" alt="">
                     </div>
                     <div class="profile-name">
                       <p><b>Favour Jennifer</b></p>
                       <small class="text-muted">9% vote</small>
                     </div>
-                   
+
 
                   </div>
                   <div class="progress">
@@ -589,14 +555,13 @@
                   <div class="candidate">
 
                     <div class="profile-photo">
-                      <img src="../images/jerry2.jpg" 
-                        alt="">
+                      <img src="../images/jerry2.jpg" alt="">
                     </div>
                     <div class="profile-name">
                       <p><b>Favour Jennifer</b></p>
                       <small class="text-muted">9% vote</small>
                     </div>
-                   
+
 
                   </div>
                   <div class="progress">
@@ -608,14 +573,13 @@
                   <div class="candidate">
 
                     <div class="profile-photo">
-                      <img src="../images/jerry2.jpg" 
-                        alt="">
+                      <img src="../images/jerry2.jpg" alt="">
                     </div>
                     <div class="profile-name">
                       <p><b>Favour Jennifer</b></p>
                       <small class="text-muted">9% vote</small>
                     </div>
-                   
+
 
                   </div>
                   <div class="progress">
@@ -627,14 +591,13 @@
                   <div class="candidate">
 
                     <div class="profile-photo">
-                      <img src="../images/jerry2.jpg" 
-                        alt="">
+                      <img src="../images/jerry2.jpg" alt="">
                     </div>
                     <div class="profile-name">
                       <p><b>Favour Jennifer</b></p>
                       <small class="text-muted">9% vote</small>
                     </div>
-                   
+
 
                   </div>
                   <div class="progress">
@@ -642,7 +605,7 @@
                     <!-- <span class="progress-text">23%</span> -->
                   </div>
                 </div>
-               
+
 
               </div>
             </div>
@@ -651,7 +614,7 @@
 
         <div class="col1">
           <div class="row1">
-            <div class="chart" x-data="dashboardData()">
+            <div class="chart">
               <div class="chart" x-show="chart==1">
                 <h2 style="margin: 2rem;">Voter frequency</h2>
 
@@ -719,7 +682,7 @@
             <div class="chart" x-show="chart">
               <h2 style="margin: 2rem;">Faculty chart</h2>
 
-              <div id="chart6"></div>
+              <div id="chart8"></div>
               <div class="btn">
                 <div class="btn1">
                   <button type="button" @click="prev_reg()"><i class="fa-solid fa-chevron-left"></i></button>
@@ -768,7 +731,7 @@
     function dashboardData() {
       return {
         chart: 1,
-        n_chart: 9,
+        n_chart: 3,
 
         next_chart() {
           this.chart++;
@@ -788,6 +751,8 @@
     }
   </script>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.esm.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
 <script src="../js/script.js"></script>
 <script src="../js/index.js" defer></script>

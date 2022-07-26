@@ -99,7 +99,27 @@ aside {
   height: 100%;
   background: var(--color-sidebar);
   width: 15%;
-  z-index: 2;
+}
+aside .side a.active{
+  background: var(--color-light);
+  color: #003487;
+  margin-left: 0;
+}
+aside .side a {
+  color: var(--color-info-dark);
+}
+aside .side a.active:before {
+  content: "";
+  width: 6px;
+  height: 100%;
+  background: #003487;
+}
+aside .side a:hover {
+  color: var(--color-sidebar-menu);
+}
+
+aside .side a:hover i {
+  margin-left: 1rem;
 }
 .side-menu {
   display: flex;

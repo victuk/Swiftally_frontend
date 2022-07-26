@@ -205,8 +205,7 @@ main {
 [x-cloak] {
   display: none;
 }
-.container {
-}
+
 .pagination {
   display: flex;
   max-height: max-content;
@@ -410,21 +409,14 @@ input[type="file"] {
     min-width: 90vw;
     min-height: 80vh;
   }
-  .team {
-    /* padding: 0; */
-  }
-  .container-3 .right {
-    /* min-width: 60vw; */
-  }
+ 
 }
 @media screen and (max-width: 768px) {
   .container {
     min-width: 100%;
     min-height: 80vh;
   }
-  .left {
-    /* display: none; */
-  }
+
   .container-fluid {
     min-width: 95vw;
   }
