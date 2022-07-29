@@ -93,6 +93,7 @@ main {
   height: 100%;
 }
 aside {
+  z-index: 4;
   position: fixed;
   display: grid;
   grid-template-columns: 4rem auto;
@@ -237,7 +238,7 @@ hr {
   margin-left: 15%;
 }
 .container nav {
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   display: flex;
   align-items: center;
@@ -376,6 +377,7 @@ input[type="search"]:focus {
   margin-right: 4rem;
 }
 .center .col1 {
+  z-index: 1;
   display: flex;
   gap: 1rem;
   background: var(--color-background);
@@ -878,6 +880,43 @@ hr {
   justify-content: space-between;
   width: 100%;
   padding: 1rem;
+}
+.chartx .dot{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 2px;
+  background: transparent;
+}
+.chartx .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartx .dot .active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.chart .dot1{
+  display: flex;
+  background-color: var(--color-primary-variant-2);
+  border-radius: 50%;
+  min-height: 2px;
+  min-width: 2px;
+  color: var(--color-primary);
+  padding: 1px 6px;
+  cursor: pointer;
+}
+.chart .dot2{
+  display: flex;
+  background-color: var(--color-primary-variant-2);
+  border-radius: 50%;
+  min-height: 2px;
+  min-width: 2px;
+  color: var(--color-primary);
+  padding: 2px 4px;
+  cursor: pointer;
 }
 .chart button {
   float: right;

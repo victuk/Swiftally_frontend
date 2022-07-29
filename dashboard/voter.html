@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css" />
   <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
-  <script defer src="alpine3.10.2.min.js"></script>
+  <script defer src="../alpine3.10.2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.css"></script>
 
   <title>Swiftvote</title>
@@ -53,7 +53,7 @@
       </div>
       <div class="side">
         <div class="logo">
-          <img src="image/Swiftvote Logo.png" alt="" />
+          <img src="../image/Swiftvote Logo.png" alt="" />
         </div>
         <div class="election">
           <div class="image"></div>
@@ -128,7 +128,7 @@
             <i class="fa-brands fa-instagram"></i>
           </div>
           <div class="img">
-            <img src="images/Beta version.png" alt="" />
+            <img src="../images/Beta version.png" alt="" />
           </div>
         </div>
       </div>
@@ -430,18 +430,47 @@
           <div class="row1">
             
             <div class="chart" x-data="dashboardData()">
-              <div class="chartx" x-show="chart==1">
-                <h2 style="margin: 2rem;">Candidates Data</h2>
+              <div class="chartx" x-show="voterchart==1">
+                <h2 style="margin: 2rem;">Voter frequency</h2>
 
-                <div id="chart3"></div>
+                <div id="chart4"></div>
+                <div class="dot
+                ">
+                  <div class="dot1 active" @click="vbtn1()">1</div>
+                  <div class="dot2" @click="vbtn2()">2</div>
+                  <div class="dot2" @click="vbtn3()">3</div>
+                </div>
               </div>
-             
+              <div class="chartx" x-show="voterchart==2">
+                <h2 style="margin: 2rem;">Voter frequency</h2>
+
+                <div id="chart5"></div>
+                <div class="dot
+                ">
+                  <div class="dot1" @click="vbtn1()">1</div>
+                  <div class="dot2 active" @click="vbtn2()">2</div>
+                  <div class="dot2" @click="vbtn3()">3</div>
+                </div>
+              </div>
+              <div class="chartx" x-show="voterchart==3">
+                <h2 style="margin: 2rem;">Voter frequency</h2>
+
+                <div id="chart6"></div>
+                <div class="dot
+                ">
+                  <div class="dot1" @click="vbtn1()">1</div>
+                  <div class="dot2" @click="vbtn2()">2</div>
+                  <div class="dot2 active" @click="vbtn3()">3</div>
+                </div>
+              </div>
+
+
               <div class="btn">
                 <div class="btn1">
-                  <button type="button" @click="prev_reg()"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button type="button" @click="prev_chart2()"><i class="fa-solid fa-chevron-left"></i></button>
                 </div>
                 <div class="btn2">
-                  <button type="button" @click="next_reg()"><i class="fa-solid fa-chevron-right"></i></button>
+                  <button type="button" @click="next_chart2()"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
               </div>
             </div>
@@ -512,16 +541,78 @@
             </table>
           </div>
           <div class="row2">
-            <div class="chart" x-show="chart">
-              <h2 style="margin: 2rem;">Faculty chart</h2>
+            <div class="chart" x-cloak>
+              <div class="chartx" x-show="chart2==1">
+                <div class="top">
+                  <h2 style="margin: 2rem;" x-text="sel"></h2>
+                  <span class="choice"
+                    style=" position: relative; float: right; width: 25%; border-radius: 10; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);  align-items: center;  right: 3rem;">
+                    <select x-model="sel">
+                      <option value="Faculty">Faculty</option>
+                      <option value="Department">Department</option>
+                      <option value="Class">Class</option>
+                    </select>
+                  </span>
+                </div>
 
-              <div id="chart6"></div>
+                <div id="chart7"></div>
+                <div class="dot
+                ">
+                  <div class="dot1 active" @click="cbtn1()">1</div>
+                  <div class="dot2" @click="cbtn2()">2</div>
+                  <div class="dot2" @click="cbtn3()">3</div>
+                </div>
+              </div>
+
+              <div class="chartx" x-show="chart2==2">
+                <div class="top">
+                  <h2 style="margin: 2rem;" x-text="sel"></h2>
+                  <span class="choice"
+                    style=" position: relative; float: right; width: 25%; border-radius: 10; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);  align-items: center;  right: 3rem;">
+                    <select x-model="sel">
+                      <option value="Faculty">Faculty</option>
+                      <option value="Department">Department</option>
+                      <option value="Class">Class</option>
+                    </select>
+                  </span>
+                </div>
+
+                <div id="chart8"></div>
+                <div class="dot
+                ">
+                  <div class="dot1" @click="cbtn1()">1</div>
+                  <div class="dot2 active" @click="cbtn2()">2</div>
+                  <div class="dot2" @click="cbtn3()">3</div>
+                </div>
+              </div>
+
+              <div class="chartx" x-show="chart2==3">
+                <div class="top">
+                  <h2 style="margin: 2rem;" x-text="sel"></h2>
+                  <span class="choice"
+                    style=" position: relative; float: right; width: 25%; border-radius: 10; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);  align-items: center;  right: 3rem;">
+                    <select x-model="sel">
+                      <option value="Faculty">Faculty</option>
+                      <option value="Department">Department</option>
+                      <option value="Class">Class</option>
+                    </select>
+                  </span>
+                </div>
+
+                <div id="chart9"></div>
+                <div class="dot
+                ">
+                  <div class="dot1" @click="cbtn1()">1</div>
+                  <div class="dot2" @click="cbtn2()">2</div>
+                  <div class="dot2 active" @click="cbtn3()">3</div>
+                </div>
+              </div>
               <div class="btn">
                 <div class="btn1">
-                  <button type="button" @click="prev_reg()"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button type="button" @click="prev_chart3()"><i class="fa-solid fa-chevron-left"></i></button>
                 </div>
                 <div class="btn2">
-                  <button type="button" @click="next_reg()"><i class="fa-solid fa-chevron-right"></i></button>
+                  <button type="button" @click="next_chart3()"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
               </div>
             </div>
@@ -563,23 +654,61 @@
 
     function dashboardData() {
       return {
-        chart: 1,
-        n_chart: 9,
+        voterchart: 1,
+        n_chart: 3,
 
-        next_chart() {
-          this.chart++;
-          if (this.chart > this.n_chart) {
-            this.chart = 1;
+        next_chart2() {
+          this.voterchart++;
+          if (this.voterchart > this.n_chart) {
+            this.voterchart = 1;
           }
         },
 
-        prev_chart() {
-          this.chart--;
-          if (this.chart < 1) {
-            this.chart = this.n_chart;
+        prev_chart2() {
+          this.voterchart--;
+          if (this.voterchart < 1) {
+            this.voterchart = this.n_chart;
           }
-        }
+        },
+        vbtn1() {
+          this.voterchart = 1;
+        },
 
+        vbtn2() {
+          this.voterchart = 2;
+        },
+
+        vbtn3() {
+          this.voterchart = 3;
+        },
+
+        chart2: 1,
+        n_chart: 3,
+
+        next_chart3() {
+          this.chart2++;
+          if (this.chart2 > this.n_chart) {
+            this.chart2 = 1;
+          }
+        },
+
+        prev_chart3() {
+          this.chart--;
+          if (this.chart2 < 1) {
+            this.chart2 = this.n_chart;
+          }
+        },
+        cbtn1() {
+          this.chart2 = 1;
+        },
+
+        cbtn2() {
+          this.chart2 = 2;
+        },
+
+        cbtn3() {
+          this.chart2 = 3;
+        },
       }
     }
   </script>
